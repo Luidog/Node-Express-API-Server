@@ -1,0 +1,16 @@
+{
+  "name": "express-server",
+  "version": "0.1.0",
+  "description": "A demo REST API server.",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Lui de la Parra",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4"
+  }
+}
