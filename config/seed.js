@@ -1,6 +1,13 @@
-"use Strict"
-
+'use strict'
 var Hero = require('../api/heroes/hero.model');
+
+var seed = {
+	data: function(){
+		data()
+	}
+}
+
+function data() {
 
 Hero.find({}).removeAsync()
   .then(function() {
@@ -13,20 +20,18 @@ Hero.find({}).removeAsync()
 				power: "Agility" },{
 				power: "Teleportation"},{ 
 				power: "Agility" } 
-				], {
+				] },{
 			heroName: "Wolverine",
 			firstName: "Logan",
 			lastName: "Vagner",
 			powers: [{  
-				power: "Agility" },{
-				power: "Teleportation"},{ 
-				power: "Agility" } 
-				], {
-					
-				}
-
-				}
+				power: "Enhanced Healing" },{
+				power: "Enhanced Smell" },{
+				power: "Claws" }
+				]
     }) .then(function() {
       console.log('finished populating Heroes');
     });
   });
+}
+  module.exports = seed
