@@ -9,7 +9,8 @@ var seed = {
 
 function data() {
 
-Hero.find({}).removeAsync()
+Hero.find({})
+	.removeAsync()
   .then(function() {
     Hero.createAsync({
 
@@ -29,9 +30,10 @@ Hero.find({}).removeAsync()
 				power: "Enhanced Smell" },{
 				power: "Claws" }
 				]
-    }) .then(function() {
+    })
+    return "true"
+    }).then(function() {
       console.log('finished populating Heroes');
     });
-  });
 }
   module.exports = seed

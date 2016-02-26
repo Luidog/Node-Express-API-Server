@@ -6,9 +6,10 @@
   margin-top: auto; }
 
 .warning {
-  background-color: red;
+  background-color: blue;
   border-radius: 5px;
+  border: 5px;
   border-color: black;
-  padding-top: 50%;
-  width: 50%;
-  height: 50%; }
+  margin-top: 10%;
+  width: 10%;
+  height: 300px; }
