@@ -7,10 +7,20 @@
     "test": "gulp test"
   },
   "author": "Lui de la Parra",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
   "license": "ISC",
   "dependencies": {
+    "beeper": "^1.1.0",
     "bluebird": "^3.3.1",
     "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.2.0",
     "mongoose": "^4.4.4"
-  }
+  },
+  "devDependencies": {}
 }

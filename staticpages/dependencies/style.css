@@ -1,0 +1,14 @@
+.center, .warning {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto; }
+
+.warning {
+  background-color: red;
+  border-radius: 5px;
+  border-color: black;
+  padding-top: 50%;
+  width: 50%;
+  height: 50%; }
