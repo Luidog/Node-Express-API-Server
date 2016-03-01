@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 var Hero = require('../api/heroes/hero.model');
 
 var seed = {

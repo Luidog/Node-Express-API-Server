@@ -1,9 +1,12 @@
  'use strict'
 
 var seed = require("./seed"),
+	path = require("path"),
 	
 	config = {
-			dbLocation: "mongodb://localhost/express-tutorial",
+			dbURL: "mongodb://localhost/express-tutorial",
+			dbLocation: "./data/db",
+			logLocation: "./logs/MongoDB",
 			port: 3000,
 			seedDB: true,
 			seedData: function(){

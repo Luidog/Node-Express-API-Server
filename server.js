@@ -41,7 +41,7 @@ Next we use Mongoose to connect to our MongoDB instance. It should be noted that
 I will recap this during the presentation. If you missed it, come to the next one. Perhaps I will add it to this project in the
 future. It would be even better if you did though. Github is our friend.	
 */
-mongoose.connect(config.dbLocation)
+mongoose.connect(config.dbURL)
 mongoose.connection.on("error", function(error){
 	console.log("MongoDB connection error: " + error)
 }) 
