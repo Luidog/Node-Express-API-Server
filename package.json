@@ -16,8 +16,8 @@
     "bluebird": "^3.3.1",
     "express": "^4.13.4",
     "lodash": "^4.5.1",
-    "mongoose": "^4.4.4",
-  },
+    "mongoose": "^4.4.4"
+  }
   "devDependencies": {
     "gulp": "^3.9.1",
     "beeper": "^1.1.0",
