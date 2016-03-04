@@ -9,23 +9,22 @@
   "author": "Lui de la Parra",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npm.git"
+    "url": "https://github.com/Luidog/Node-Express-API-Server"
   },
   "license": "ISC",
   "dependencies": {
-    "beeper": "^1.1.0",
     "bluebird": "^3.3.1",
     "express": "^4.13.4",
+    "lodash": "^4.5.1",
+    "mongoose": "^4.4.4",
+  },
+  "devDependencies": {
     "gulp": "^3.9.1",
+    "beeper": "^1.1.0",
+    "gulp-shell": "^0.5.2",
     "gulp-jade": "^1.1.0",
     "gulp-live-server": "0.0.29",
     "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.2.0",
-    "mongoose": "^4.4.4"
-  },
-  "devDependencies": {
-    "gulp-postmortem": "^1.0.5",
-    "gulp-shell": "^0.5.2",
-    "lodash": "^4.5.1"
+    "gulp-sass": "^2.2.0"
   }
 }

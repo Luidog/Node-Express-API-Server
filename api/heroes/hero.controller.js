@@ -7,6 +7,7 @@
 */
 
 var Hero = require("./hero.model"),
+    HeroEvents = require('./hero.events'),
     _ = require('lodash');
 
 /*
