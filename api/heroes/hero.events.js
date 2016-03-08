@@ -4,12 +4,13 @@
   Hero model events
  */
 
-'use strict';
 
-var EventEmitter = require('events').EventEmitter;
 var Hero = require('./hero.model'),
-	HeroEvents = new EventEmitter();
-var Request = require('request');
+    Request = require('request'),
+    logger = require("../../configuration/winston"),
+    EventEmitter = require('events').EventEmitter;
+var HeroEvents = new EventEmitter();
+
 
 // Set max event listeners (0 == unlimited)
 HeroEvents.setMaxListeners(0);
@@ -24,7 +25,7 @@ var events = {
 for (var e in events) {
   var event = events[e];
   Hero.schema.post(e, emitEvent(event));
-  console.log("Hero %s event has been registered", event)
+  logger.verbose("Hero %s event has been registered", event)
 }
 
 function emitEvent(event) {
@@ -35,11 +36,11 @@ function emitEvent(event) {
 }
 
 HeroEvents.on('save', function(hero){
-	console.log('New hero saved %s.', hero.heroName)
+	logger.verbose('New hero saved, named %s.', hero.heroName)
 })
 
 HeroEvents.on('remove', function(hero){
-	console.log('%s has been removed.', hero.heroName)
+	logger.verbose('%s has been removed.', hero.heroName)
 })
 
 

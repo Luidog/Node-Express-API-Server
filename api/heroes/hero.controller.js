@@ -2,12 +2,12 @@
 
 /*
   The endpoint's controller is used to perform operations with
-  it's database model. Do do this we are requiring our endpoint's model
-  to allow the controller to interact with our the endpoint data.
+  its' database model. To do this we are requiring our endpoint's model
+  to allow the controller to interact with the endpoint data.
 */
 
 var Hero = require("./hero.model"),
-    HeroEvents = require('./hero.events'),
+    HeroEvents = require("./hero.events"),
     _ = require('lodash');
 
 /*
@@ -80,6 +80,7 @@ exports.show = function(req, res) {
 
 // Creates a new Hero in the DB
 exports.create = function(req, res) {
+  console.log(req.body)
   Hero.createAsync(req.body)
     .then(responseWithResult(res, 201))
     .catch(handleError(res));

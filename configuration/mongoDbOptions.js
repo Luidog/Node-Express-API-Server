@@ -6,7 +6,7 @@ var seed = require("./seed"),
 	config = {
 			dbURL: "mongodb://localhost/express-tutorial",
 			dbLocation: "./data/db",
-			logLocation: "./logs/MongoDB",
+			logLocation: "./logs/mongoDB.log",
 			port: 3000,
 			seedDB: true,
 			seedData: function(){

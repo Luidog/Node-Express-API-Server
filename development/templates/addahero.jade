@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+	head
+		link(rel='stylesheet', type="text/css", href='/static/style.css')
+		// IE Sucks - Polyfills - order is important
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.16/system-polyfills.js")
+		script(src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js")
+		// Angular 2 libraries - order is important
+		script(src="https://code.angularjs.org/tools/system.js")
+		script(src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js")
+		script(src="https://code.angularjs.org/2.0.0-beta.8/Rx.js")
+		script(src="https://code.angularjs.org/2.0.0-beta.8/angular2.dev.js")
+		script(type='text/javascript').
+			System.import('/static/main.js')
+				    .catch(console.error.bind(console));
+		title Add A Hero
+	body
+		hello-world Loading....

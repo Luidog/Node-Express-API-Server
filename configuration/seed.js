@@ -1,6 +1,7 @@
 'use strict';
 
-var Hero = require('../api/heroes/hero.model');
+var Hero = require('../api/heroes/hero.model'),
+	logger = require("./winston");
 
 var seed = {
 	data: function(){
@@ -52,12 +53,19 @@ Hero.find({})
 			powers: [{  
 				power: "Filthy Rich" },{
 				power: "Greatest Detective" }
+				]},{
+			heroName: "DeadPool",
+			firstName: "Dead",
+			lastName: "Pool",
+			powers: [{  
+				power: "Merc with a mouth" },{
+				power: "breaks fourth wall" }
 				]
 
     })
     return "true"
     }).then(function() {
-      console.log('finished populating Heroes');
+      logger.info('finished populating Heroes');
     });
 
 }
