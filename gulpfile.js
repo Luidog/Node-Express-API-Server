@@ -73,10 +73,11 @@ gulp.task('transpile-typescript', function(done) {
       "node_modules/angular2/bundles/typings/angular2/router.d.ts",
       "node_modules/angular2/typings/browser.d.ts",
       "node_modules/@reactivex/rxjs/dist/es6/Rx.d.ts",
-      "development/angular2/*.ts"
+      "development/angular2/*.ts",
+      "development/angular2/components/*.ts"
     ])
     .pipe(ts(tsProject));
-  return tsResult.js.pipe(gulp.dest('staticpages/dependencies'));
+  return tsResult.js.pipe(gulp.dest('staticpages/dependencies/'));
 });
 
 gulp.task("watch", function(){
@@ -84,7 +85,6 @@ gulp.task("watch", function(){
 	gulp.watch('./development/templates/*.jade', ["compile-jade"])
 	gulp.watch('./development/styles/*.scss', ["compile-sass"])
 	gulp.watch('./*.js', ['restart-server'])
-	gulp.watch('./development/angular2/*.ts', ['transpile-typescript'])
 	gulp.watch('./config/*.js', ['restart-server'])
 	gulp.watch('./api/**/*.js', ['restart-server'])
 })
@@ -97,4 +97,4 @@ gulp.task('restart-server', function(){
 
 
 
-gulp.task("default",["start-mongo","compile-jade","transpile-typescript","compile-sass","serve", "watch"])
+gulp.task("default",["start-mongo","compile-jade","compile-sass","serve", "watch"])

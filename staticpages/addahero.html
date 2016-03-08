@@ -1,2 +1,21 @@
-<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" type="text/css" href="/static/style.css"><!-- IE Sucks - Polyfills - order is important--><script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.16/system-polyfills.js"></script><script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script><!-- Angular 2 libraries - order is important--><script src="https://code.angularjs.org/tools/system.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/Rx.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/angular2.dev.js"></script><script type="text/javascript">System.import('/static/main.js')
-	    .catch(console.error.bind(console));</script><title>Add A Hero</title></head><body><hello-world>Loading....</hello-world></body></html>
+<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" type="text/css" href="/static/semantic.min.css"><script src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"></script><script src="https://code.angularjs.org/tools/system.js"></script><script src="/static/config.js"></script><script src="https://code.angularjs.org/tools/system.js"></script><script src="https://code.angularjs.org/tools/typescript.js"></script><script src="https://code.angularjs.org/tools/system.js"></script><script src="https://code.angularjs.org/tools/typescript.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/Rx.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/http.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/angular2.js"></script><script src="https://code.angularjs.org/2.0.0-beta.8/router.js"></script><script type="text/javascript">System.config({
+//use typescript for compilation
+transpiler: 'typescript',
+//typescript compiler options
+typescriptOptions: {
+	emitDecoratorMetadata: true
+},
+//map tells the System loader where to look for things
+map: {
+	app: "./static",
+},
+//packages defines our app package
+packages: {
+	app: {
+		main: './main.ts',
+		defaultExtension: 'ts'
+	}
+}
+});
+System.import('app')
+	    .catch(console.error.bind(console));</script><title>Add A Hero</title></head><body><div style="padding: 30px"><hero-form>Loading....</hero-form></div></body></html>
