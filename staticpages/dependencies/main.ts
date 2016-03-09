@@ -10,6 +10,7 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 @Component({
     selector: 'hero-form',
     directives: [FORM_DIRECTIVES],
+    providers: [HTTP_PROVIDERS],
     template: `
   <h2 class="ui header">Add A Hero</h2>
           <div style="width: 300px">
@@ -65,4 +66,4 @@ export class SimpleHTTPComponent {
     }
 }
 
-bootstrap(SimpleHTTPComponent, [HTTP_PROVIDERS]);
+bootstrap(SimpleHTTPComponent);

@@ -26,10 +26,7 @@ function onError(error){
 	logger.error(error)
 }
 
-gulp.task('start-mongo', function(){
-	logger.info("Starting MongoDB")
-	runCommand('mongod --dbpath ' + config.dbLocation);
-})
+gulp.task('start-mongo', runCommand('mongod --dbpath ' + config.dbLocation))
 
 gulp.task('stop-mongo', function(){
 	logger.info("Stoping MongoDB")
