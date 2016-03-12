@@ -18,7 +18,7 @@ import { httpService } from 'static/services/httpService.service.ts'
 export class HeroList{
 	heroes: any;
 
-	heroes = ['Miami', 'Sao Paulo', 'New York'];
+	this.heroes = ['Miami', 'Sao Paulo', 'New York'];
 
 	constructor(){
 

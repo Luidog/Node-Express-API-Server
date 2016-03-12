@@ -8,7 +8,7 @@ var gulp = require("gulp"),
 	server =liveServer.new('Hero-server.js'),
 	ts = require('gulp-typescript'),
 	logger = require("./configuration/winston"),
-	tsProject = ts.createProject('tsconfig.json', {typescript: require('typescript')}),
+	tsProject = ts.createProject('./configuration/tsconfig.json', {typescript: require('typescript')}),
 	exec = require('child_process').exec;
 
 function runCommand(command) {
