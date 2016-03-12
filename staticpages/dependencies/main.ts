@@ -1,69 +1,43 @@
 /*
  * Angular
  */
-import { bootstrap } from 'angular2/platform/browser'
-import {Component} from 'angular2/core';
-import { FORM_DIRECTIVES } from 'angular2/common';
-import {Http, Headers, Response} from 'angular2/http';
+import { bootstrap } from 'angular2/platform/browser';
+import { provide, Component} from 'angular2/core';
+import { HeroForm } from 'static/components/HeroForm.component.ts';
+import { HeroList } from 'static/components/HeroList.component.ts';
+import { HomeComponent } from 'static/components/Home.component.ts';
 import { HTTP_PROVIDERS } from 'angular2/http';
+import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy, LocationStrategy, } from 'angular2/router';
 
 @Component({
-    selector: 'hero-form',
-    directives: [FORM_DIRECTIVES],
-    providers: [HTTP_PROVIDERS],
+    selector: 'hero-app',
+    directives: [ROUTER_DIRECTIVES],
     template: `
-  <h2 class="ui header">Add A Hero</h2>
-          <div style="width: 300px">
-        <form class="ui form" #f='ngForm' (ngSubmit)="makeRequest(f.value)">
-            <div style="padding-bottom: 10px">
-                <div class="field ui input">
-                    <label>First Name</label>
-                    <input  type="text" id="skuInput" placeholder="First Name" ngControl="firstName">
-                </div>
-                <div class="field ui input">
-                    <label>Last Name</label>
-                    <input type="text" id="skuInput" placeholder="Last Name" ngControl="lastName">
-                </div>
-                <div class="field ui input">
-                <label>Hero Name</label>
-                <input type="text" id="skuInput" placeholder="Hero Name" ngControl="heroName">
-                </div>
-            </div>
-            <button  class="ui button active" type="submit">Submit</button>
-        </form>
-        </div>
-  <div *ngIf="loading">loading...</div>
-  <pre>{{data | json}}</pre>
-`
+  <div>
+    <nav class="ui three item menu">
+        <a class="item" [routerLink]="['/Home']">Home</a>
+        <a class="item" [routerLink]="['/HeroList']">Hero List</a>
+        <a class="item" [routerLink]="['/HeroForm']">Add A Hero</a>
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>
+  `
 })
-export class SimpleHTTPComponent {
-    data: Object;
 
-    constructor(public http: Http) {
+@RouteConfig([
+        
+        { path: '/home', name: 'Home', component: HomeComponent },
+        { path: '/heroform', name: 'HeroForm', component: HeroForm },
+        { path: '/herolist', name: 'HeroList', component: HeroList },
+        { path: '/', name: 'root', redirectTo: ['/Home'] }
+    ])
+export class HeroApp {
+
+
+    constructor() {
     }
 
-    makeRequest(formvalues: Object): void {
-
-        let newRequest: string = toURLEncodedString(formvalues)
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-        function toURLEncodedString(obj: any): string {
-            var parts = [];
-            for (var i in obj) {
-                if (obj.hasOwnProperty(i)) {
-                    parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
-                }
-            }
-            return parts.join("&");
-        }
-        this.http.post('http://localhost:3000/api/heroes', newRequest, { headers: headers })
-            .subscribe((res: Response) => {
-                this.data = res.json();
-                this.loading = false;
-            });
-    
-    }
 }
 
-bootstrap(SimpleHTTPComponent);
+bootstrap(HeroApp, [HTTP_PROVIDERS,ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);

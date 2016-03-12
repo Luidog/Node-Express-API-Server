@@ -25,6 +25,19 @@
 
 */ 
 
+
+/*
+	PMX is used to aid PM2 track our routes.
+
+
+*/
+
+require('pmx').init({
+  http : true
+});
+
+
+
 var express = require("express"),
 	mongoose = require("mongoose"),
 	http = require("http"),
