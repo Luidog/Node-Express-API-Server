@@ -16,8 +16,8 @@ sftp-config.json
 
 ### Node ###
 # Logs
-logs
-*.log
+# logs
+# *.log
 npm-debug.log*
 
 # Runtime data
