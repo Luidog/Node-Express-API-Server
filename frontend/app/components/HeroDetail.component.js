@@ -28,9 +28,10 @@ System.register(['angular2/core', "angular2/router", '../datatypes/hero.datatype
             }],
         execute: function() {
             HeroDetail = (function () {
-                function HeroDetail(_routeParams, _heroService) {
+                function HeroDetail(_routeParams, _heroService, _router) {
                     this._routeParams = _routeParams;
                     this._heroService = _heroService;
+                    this._router = _router;
                 }
                 HeroDetail.prototype.ngOnInit = function () {
                     var _this = this;
@@ -45,7 +46,7 @@ System.register(['angular2/core', "angular2/router", '../datatypes/hero.datatype
                         providers: [HeroService_service_1.HeroService],
                         template: "\n\t\t<div>\n\t\t\t<div>\n\t\t\t\t<p>hero goes here</p>\n\t\t\t\t<p>{{ firstName }}</p>\n\t\t\t</div>\n\t\t</div>\n\t"
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteParams, HeroService_service_1.HeroService])
+                    __metadata('design:paramtypes', [router_1.RouteParams, HeroService_service_1.HeroService, router_1.Router])
                 ], HeroDetail);
                 return HeroDetail;
             }());
