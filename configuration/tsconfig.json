@@ -1,28 +1,17 @@
 {
-  "version": "1.6.0",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "web/js",
     "target": "es5",
     "module": "system",
-    "declaration": false,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "listFiles": true
+    "removeComments": false,
+    "noImplicitAny": false
   },
-  "files": [
-        "node_modules/angular2/bundles/typings
-           /angular2/angular2.d.ts",
-        "node_modules/angular2/bundles/typings
-           /angular2/http.d.ts",
-        "node_modules/angular2/bundles/typings
-           /angular2/router.d.ts",
-        "/node_modules/angular2/typings/browser.d.ts",
-        "node_modules/@reactivex/rxjs/es6/R.d.ts",
-        "src/hiya.ts"
+  "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
   ]
 }

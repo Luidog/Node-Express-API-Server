@@ -1,10 +1,12 @@
-import { httpService } from 'static/services/httpService.service.ts'
+import { HeroService } from '../services/HeroService.service';
 import { Component } from 'angular2/core';
 import { FORM_DIRECTIVES } from 'angular2/common';
 
+import { Hero } from '../datatypes/hero.datatype';
+
 @Component({
     selector: 'hero-form',
-    providers: [httpService],
+    providers: [HeroService],
     template: `
     <div>
   <h2 class="ui header">Add A Hero</h2>
@@ -13,37 +15,36 @@ import { FORM_DIRECTIVES } from 'angular2/common';
             <div style="padding-bottom: 10px">
                 <div class="field ui input">
                     <label>First Name</label>
-                    <input  type="text" id="skuInput" placeholder="First Name" ngControl="firstName">
+                    <input  type="text" placeholder="First Name" ngControl="firstName">
                 </div>
                 <div class="field ui input">
                     <label>Last Name</label>
-                    <input type="text" id="skuInput" placeholder="Last Name" ngControl="lastName">
+                    <input type="text" placeholder="Last Name" ngControl="lastName">
                 </div>
                 <div class="field ui input">
                 <label>Hero Name</label>
-                <input type="text" id="skuInput" placeholder="Hero Name" ngControl="heroName">
+                <input type="text" placeholder="Hero Name" ngControl="heroName">
                 </div>
             </div>
             <button  class="ui button active" type="submit">Submit</button>
         </form>
         </div>
-  <div *ngIf="loading">loading...</div>
-  <pre>{{data | json}}</pre>
+  <div *ngIf="hero">
+      <pre>{{ hero | json}}</pre>
+  </div>
   </div>
 `
 })
 
 export class HeroForm {
-    data: string
-    loading: boolean
+    hero: Hero;
 
-    constructor(private _httpService: httpService) {
+    constructor(private _heroService: HeroService) {
     }
 
-    makeRequest(values: any): string {
-        let data = this._httpService.sendRequest(values)
-        this.loading = true
-        return this.data
+    makeRequest(values: any): void {
+        this._heroService.addAHero(values)
+            .subscribe(res => this.hero = res)
 
     }
 }

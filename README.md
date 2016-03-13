@@ -25,13 +25,11 @@ $ git clone [git-repo-url] node-rest-server
 $ cd node-rest-server
 $ npm install
 $ node hero-server
-```
-Optionally also install the development packages
+ or
 ```sh
-$ npm install -dev
 $ gulp
 ```
-Make a change in your file and instantanously see your updates!
+Make a change in your file and instantanously see it!
 
 ### Development
 

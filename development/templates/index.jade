@@ -1,10 +1,9 @@
 doctype html
 html(lang="en")
 	head
-		link(rel='stylesheet', type="text/css", href='/static/semantic.min.css')
+		link(rel='stylesheet', type="text/css", href='/frontend/styles/semantic.min.css')
 		script(src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js")
 		script(src="https://code.angularjs.org/tools/system.js")
-		script(src="/static/config.js")
 		script(src="https://code.angularjs.org/tools/system.js")
 		script(src="https://code.angularjs.org/tools/typescript.js")
 		script(src="https://code.angularjs.org/tools/system.js")
@@ -15,27 +14,21 @@ html(lang="en")
 		script( src="https://code.angularjs.org/2.0.0-beta.8/router.js")
 		script(type='text/javascript').
 			System.config({
-			//use typescript for compilation
-			transpiler: 'typescript',
-			//typescript compiler options
-			typescriptOptions: {
-				emitDecoratorMetadata: true
-			},
 			//map tells the System loader where to look for things
 			map: {
-				app: "./static",
+				app: "./frontend/app",
 			},
 			//packages defines our app package
 			packages: {
 				app: {
-					main: './main.ts',
-					defaultExtension: 'ts'
+					main: './app.js',
+					defaultExtension: 'js'
 				}
 			}
 			});
 			System.import('app')
 				    .catch(console.error.bind(console));
-		title Add A Hero
-	body
-		div(style={padding: '50px'})
+		title REST Server Frontend
+	body(style={padding: '50px'})
+		div
 			hero-app Loading....

@@ -24,8 +24,8 @@ Hero.find({})
 				power: "Agility" } 
 				] },{
 			heroName: "Wolverine",
-			firstName: "Logan",
-			lastName: "Vagner",
+			firstName: "James",
+			lastName: "Howlett",
 			powers: [{  
 				power: "Enhanced Healing" },{
 				power: "Enhanced Smell" },{
@@ -54,9 +54,9 @@ Hero.find({})
 				power: "Filthy Rich" },{
 				power: "Greatest Detective" }
 				]},{
-			heroName: "DeadPool",
-			firstName: "Dead",
-			lastName: "Pool",
+			heroName: "Dead Pool",
+			firstName: "Wade",
+			lastName: "Wilson",
 			powers: [{  
 				power: "Merc with a mouth" },{
 				power: "breaks fourth wall" }

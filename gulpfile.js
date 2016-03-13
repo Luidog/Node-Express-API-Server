@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require("gulp"),
 	jade = require("gulp-jade"),
 	sass = require("gulp-sass"),
@@ -46,7 +48,7 @@ gulp.task("compile-jade", function(){
     	.pipe(jade({
       		locals: locals
     		}))
-    	.pipe(gulp.dest('./staticpages/'))
+    	.pipe(gulp.dest('./frontend/'))
 })
 
 gulp.task("compile-sass", function(){
@@ -54,7 +56,7 @@ gulp.task("compile-sass", function(){
 	gulp.src("./development/styles/*.scss")
 		.pipe(plumber({ errorHandler: onError}))
 		.pipe(sass())
-		.pipe(gulp.dest('./staticpages/dependencies/'))
+		.pipe(gulp.dest('./frontend/styles/'))
 })
 
 gulp.task("serve", function(){
@@ -62,24 +64,21 @@ gulp.task("serve", function(){
 	server.start()
 })
 
-gulp.task('transpile-typescript', function(done) {
-	logger.info("Watching for typescript file changes.")
-  var tsResult = gulp.src([
-      "node_modules/angular2/bundles/typings/angular2/angular2.d.ts",
-      "node_modules/angular2/bundles/typings/angular2/http.d.ts",
-      "node_modules/angular2/bundles/typings/angular2/router.d.ts",
-      "node_modules/angular2/typings/browser.d.ts",
-      "node_modules/@reactivex/rxjs/dist/es6/Rx.d.ts",
-      "development/angular2/*.ts",
-      "development/angular2/components/*.ts"
-    ])
-    .pipe(ts(tsProject));
-  return tsResult.js.pipe(gulp.dest('staticpages/dependencies/'));
+gulp.task('transpile-typescript', function() {
+	logger.info("Transpiling Typescript.")
+	gulp.src("./development/app/**/*.ts")
+		.pipe(plumber({ errorHandler: onError}))
+    	.pipe(ts(tsProject))
+		.pipe(gulp.dest('./frontend/app/'));
 });
 
 gulp.task("watch", function(){
 	logger.info("Watching for file changes.")
 	gulp.watch('./development/templates/*.jade', ["compile-jade"])
+	gulp.watch('./development/app/components/*.*.*', ["transpile-typescript"])
+	gulp.watch('./development/app/services/*.*.*', ["transpile-typescript"])
+	gulp.watch('./development/app/datatype/*.*.*', ["transpile-typescript"])
+	gulp.watch('./development/app/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/styles/*.scss', ["compile-sass"])
 	gulp.watch('./*.js', ['restart-server'])
 	gulp.watch('./config/*.js', ['restart-server'])
@@ -94,4 +93,4 @@ gulp.task('restart-server', function(){
 
 
 
-gulp.task("default",["start-mongo","compile-jade","compile-sass","serve", "watch"])
+gulp.task("default",["start-mongo","compile-jade","transpile-typescript","compile-sass","serve", "watch"])
