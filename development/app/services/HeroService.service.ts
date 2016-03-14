@@ -15,7 +15,7 @@ export class HeroService {
         let newRequest: string = this._toURLEncodedString(heroToAdd)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://localhost:3000/api/heroes', newRequest, { headers: headers })
+        return this.http.post('http://mutesymphony.com:4000/api/heroes', newRequest, { headers: headers })
             .map((responseData) => {
               console.log(responseData.json())
                 return responseData.json();
@@ -24,7 +24,7 @@ export class HeroService {
 
 
     getHeroes() {
-        return this.http.get('http://localhost:3000/api/heroes')
+        return this.http.get('http://mutesymphony.com:4000/api/heroes')
             .map((responseData) => {
             return responseData.json();
         })
@@ -46,7 +46,7 @@ export class HeroService {
         }
 
        getHero(id: string){
-           return this.http.get('http://localhost:3000/api/heroes/' + id)
+           return this.http.get('http://mutesymphony.com:4000/api/heroes/' + id)
              .map((responseData) => {
                return responseData.json();
              })
