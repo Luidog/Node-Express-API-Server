@@ -7,6 +7,9 @@ import { Component } from 'angular2/core'
     		<div class="column">
     			<img width="737" height="556" alt="ASCII-apple logo" src="http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556">
     		</div>
+    		<div>
+    			<p>A Hero REST Server designed by <a href="https://github.com/Luidog"> Lui de la Parra </a></p>
+    		</div>
 		</div>
 	`
 })

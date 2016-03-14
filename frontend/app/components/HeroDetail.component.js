@@ -10,7 +10,7 @@ System.register(['angular2/core', "angular2/router", '../datatypes/hero.datatype
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, hero_datatype_1, HeroService_service_1;
+    var core_1, router_1, hero_datatype_1, HeroService_service_1, router_2;
     var HeroDetail;
     return {
         setters:[
@@ -19,6 +19,7 @@ System.register(['angular2/core', "angular2/router", '../datatypes/hero.datatype
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+                router_2 = router_1_1;
             },
             function (hero_datatype_1_1) {
                 hero_datatype_1 = hero_datatype_1_1;
@@ -37,14 +38,14 @@ System.register(['angular2/core', "angular2/router", '../datatypes/hero.datatype
                     var _this = this;
                     var _id = this._routeParams.get("_id");
                     this._heroService.getHero(_id)
-                        .subscribe(function (selectedHero) { return _this.hero = new hero_datatype_1.Hero(selectedHero.firstName, selectedHero.lastName, selectedHero.heroName, selectedHero._id); });
-                    console.log(this.hero);
+                        .subscribe(function (selectedHero) { return _this.hero = new hero_datatype_1.Hero(selectedHero.firstName, selectedHero.lastName, selectedHero.heroName, selectedHero._id, selectedHero.powers); });
                 };
                 HeroDetail = __decorate([
                     core_1.Component({
                         selector: 'hero-details',
+                        directives: [router_2.ROUTER_DIRECTIVES],
                         providers: [HeroService_service_1.HeroService],
-                        template: "\n\t\t<div>\n\t\t\t<div>\n\t\t\t\t<p>hero goes here</p>\n\t\t\t\t<p>{{ firstName }}</p>\n\t\t\t</div>\n\t\t</div>\n\t"
+                        template: "\n\t\t<div>\n\t\t\t<h1>Hero</h1>\n\t\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\">\n\t\t\t\t<pre>{{ hero | json }}</pre>\n\t\t\t</div>\n\t\t\t<button [routerLink]=\"['/Heroes']\" class=\"ui button\">\n\t\t\tBack\n\t\t\t</button>\n\t\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [router_1.RouteParams, HeroService_service_1.HeroService, router_1.Router])
                 ], HeroDetail);

@@ -29,19 +29,20 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
                 function HeroService(http) {
                     this.http = http;
                     console.log('Hero REST Service Created.', http);
+                    this.baseurl = 'http://localhost:3000/api/heroes/';
                 }
                 HeroService.prototype.addAHero = function (heroToAdd) {
                     var newRequest = this._toURLEncodedString(heroToAdd);
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    return this.http.post('http://mutesymphony.com:4000/api/heroes', newRequest, { headers: headers })
+                    return this.http.post(this.baseurl, newRequest, { headers: headers })
                         .map(function (responseData) {
                         console.log(responseData.json());
                         return responseData.json();
                     });
                 };
                 HeroService.prototype.getHeroes = function () {
-                    return this.http.get('http://mutesymphony.com:4000/api/heroes')
+                    return this.http.get(this.baseurl)
                         .map(function (responseData) {
                         return responseData.json();
                     })
@@ -49,16 +50,16 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
                         var result = [];
                         if (heroes) {
                             heroes.forEach(function (hero) {
-                                result.push(new hero_datatype_1.Hero(hero.firstName, hero.lastName, hero.heroName, hero._id));
+                                result.push(new hero_datatype_1.Hero(hero.firstName, hero.lastName, hero.heroName, hero._id, hero.powers));
                             });
                         }
                         return result;
                     });
                 };
                 HeroService.prototype.getHero = function (id) {
-                    return this.http.get('http://mutesymphony.com:4000/api/heroes/' + id)
-                        .map(function (responseData) {
-                        return responseData.json();
+                    return this.http.get(this.baseurl + id)
+                        .map(function (res) {
+                        return res.json();
                     });
                 };
                 HeroService.prototype._toURLEncodedString = function (obj) {

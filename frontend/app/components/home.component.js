@@ -24,7 +24,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 HomeComponent = __decorate([
                     core_1.Component({
                         selector: 'home-page',
-                        template: "\n\t\t<div class=\"centered row\">\n    \t\t<div class=\"column\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n\t\t</div>\n\t"
+                        template: "\n\t\t<div class=\"centered row\">\n    \t\t<div class=\"column\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t\t<div>\n    \t\t\t<p>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></p>\n    \t\t</div>\n\t\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);

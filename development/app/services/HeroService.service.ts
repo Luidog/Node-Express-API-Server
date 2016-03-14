@@ -6,16 +6,18 @@ import { Hero } from '../datatypes/hero.datatype';
 
 @Injectable()
 export class HeroService {
+    baseurl: string
 
     constructor(public http: Http) {
         console.log('Hero REST Service Created.', http)
+        this.baseurl = 'http://localhost:3000/api/heroes/';
     }
 
     addAHero(heroToAdd: Hero) {
         let newRequest: string = this._toURLEncodedString(heroToAdd)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        return this.http.post('http://mutesymphony.com:4000/api/heroes', newRequest, { headers: headers })
+        return this.http.post(this.baseurl, newRequest, { headers: headers })
             .map((responseData) => {
               console.log(responseData.json())
                 return responseData.json();
@@ -24,7 +26,7 @@ export class HeroService {
 
 
     getHeroes() {
-        return this.http.get('http://mutesymphony.com:4000/api/heroes')
+        return this.http.get(this.baseurl)
             .map((responseData) => {
             return responseData.json();
         })
@@ -37,7 +39,8 @@ export class HeroService {
                                         hero.firstName,
                                         hero.lastName,
                                         hero.heroName,
-                                        hero._id
+                                        hero._id,
+                                        hero.powers
                                     ));
                     });
                 }
@@ -46,10 +49,10 @@ export class HeroService {
         }
 
        getHero(id: string){
-           return this.http.get('http://mutesymphony.com:4000/api/heroes/' + id)
-             .map((responseData) => {
-               return responseData.json();
-             })
+           return this.http.get(this.baseurl + id)
+               .map((res: Response) => {
+                 return res.json();                       
+               });
        }
 
     private _toURLEncodedString(obj: any): string {

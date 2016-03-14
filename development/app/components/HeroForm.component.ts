@@ -9,29 +9,29 @@ import { Hero } from '../datatypes/hero.datatype';
     providers: [HeroService],
     template: `
     <div>
-  <h2 class="ui header">Add A Hero</h2>
-          <div style="width: 500px">
-        <form class="ui form" #f='ngForm' (ngSubmit)="makeRequest(f.value)">
-            <div style="padding-bottom: 10px">
-                <div style="width: 500px" class="field ui input">
-                    <label>First Name</label>
-                    <input  type="text" placeholder="First Name" ngControl="firstName">
+        <h1>Add A Hero</h1>
+        <div style="width: 500px">
+            <form class="ui form" #f='ngForm' (ngSubmit)="makeRequest(f.value)">
+                <div style="padding-bottom: 10px">
+                    <div style="width: 500px" class="field ui input">
+                        <label>First Name</label>
+                        <input  type="text" placeholder="First Name" ngControl="firstName">
+                    </div>
+                    <div style="width: 500px" class="field ui input">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Last Name" ngControl="lastName">
+                    </div>
+                    <div style="width: 500px" class="field ui input">
+                        <label>Hero Name</label>
+                        <input type="text" placeholder="Hero Name" ngControl="heroName">
+                    </div>
                 </div>
-                <div style="width: 500px" class="field ui input">
-                    <label>Last Name</label>
-                    <input type="text" placeholder="Last Name" ngControl="lastName">
-                </div>
-                <div style="width: 500px" class="field ui input">
-                <label>Hero Name</label>
-                <input type="text" placeholder="Hero Name" ngControl="heroName">
-                </div>
-            </div>
-            <button  class="ui button active" type="submit">Submit</button>
-        </form>
+                <button  class="ui button active" type="submit">Submit</button>
+            </form>
         </div>
-  <div *ngIf="hero">
-      <pre>{{ hero | json}}</pre>
-  </div>
+      <div *ngIf="hero">
+          <pre>{{ hero | json}}</pre>
+      </div>
   </div>
 `
 })
