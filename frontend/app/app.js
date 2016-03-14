@@ -50,7 +50,7 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
                     core_1.Component({
                         selector: 'hero-app',
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        template: "\n  <div>\n    <nav class=\"ui three item menu\">\n        <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n        <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n        <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n    </nav>\n\n    <router-outlet class=\"ui four column centered grid\"></router-outlet>\n  </div>\n  "
+                        template: "\n  <div>\n    <nav class=\"ui three item menu\">\n        <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n        <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n        <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n    </nav>\n    <div  class=\"ui three column centered grid\">\n    <router-outlet></router-outlet>\n    </div>\n  </div>\n  "
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: Home_component_1.HomeComponent },

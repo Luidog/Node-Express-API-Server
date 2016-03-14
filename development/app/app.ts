@@ -23,8 +23,9 @@ import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy,
         <a class="item" [routerLink]="['/Heroes']">Hero List</a>
         <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
     </nav>
-
-    <router-outlet class="ui four column centered grid"></router-outlet>
+    <div  class="ui three column centered grid">
+    <router-outlet></router-outlet>
+    </div>
   </div>
   `
 })

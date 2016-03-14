@@ -10,18 +10,18 @@ import { Hero } from '../datatypes/hero.datatype';
     template: `
     <div>
   <h2 class="ui header">Add A Hero</h2>
-          <div style="width: 300px">
+          <div style="width: 500px">
         <form class="ui form" #f='ngForm' (ngSubmit)="makeRequest(f.value)">
             <div style="padding-bottom: 10px">
-                <div class="field ui input">
+                <div style="width: 500px" class="field ui input">
                     <label>First Name</label>
                     <input  type="text" placeholder="First Name" ngControl="firstName">
                 </div>
-                <div class="field ui input">
+                <div style="width: 500px" class="field ui input">
                     <label>Last Name</label>
                     <input type="text" placeholder="Last Name" ngControl="lastName">
                 </div>
-                <div class="field ui input">
+                <div style="width: 500px" class="field ui input">
                 <label>Hero Name</label>
                 <input type="text" placeholder="Hero Name" ngControl="heroName">
                 </div>
