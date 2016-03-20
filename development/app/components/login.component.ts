@@ -11,21 +11,24 @@ import { contentHeaders } from '../common/headers';
 @View({
   directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: `
-    <div class="login jumbotron center-block">
-  <h1>Login</h1>
-  <form role="form" (submit)="login($event, username.value, password.value)">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" #username class="form-control" id="username" placeholder="Username">
+  <div>
+    <h1>Login</h1>
+    <div style="width: 500px">
+      <form class="ui form" role="form" (submit)="login($event, username.value, password.value)">
+        <div style="padding-bottom: 10px">
+          <div style="width: 500px" class="field ui input">
+            <label for="username">Username</label>
+            <input type="text" #username  id="username" placeholder="Username">
+          </div>
+          <div style="width: 500px" class="field ui input">
+            <label for="password">Password</label>
+            <input type="password" #password class="form-control" id="password" placeholder="Password">
+          </div>
+        <button type="submit" class="ui button active" >Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" #password class="form-control" id="password" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-    <a href="/signup">Click here to Signup</a>
-</form>
-</div>
   `
 })
 export class LoginComponent {

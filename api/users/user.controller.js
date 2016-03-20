@@ -41,11 +41,11 @@ function respondWith(res, statusCode) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
+  console.log(req)
   User.findAsync({}, '-salt -hashedPassword')
     .then(function(users) {
-      res.status(200).json(users);
-    })
-    .catch(handleError(res));
+     res.status(200).json(users);  })
+  //  .catch(handleError(res));
 };
 
 /**
