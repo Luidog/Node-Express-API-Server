@@ -4,11 +4,24 @@
 	First we pass in path from Node.js. This will turn our. hello!!!! 
 */
 var path = require("path"),
-	express = require("express");
+	express = require("express"),
+	passport = require('passport'),
+	cookieParser = require('cookie-parser'),
+	flash    = require('connect-flash'),
+	bodyParser = require('body-parser'),
+	session      = require('express-session');
 
 module.exports = function(serverApp) {
 
+	serverApp.use(bodyParser.json()); // get information from html forms
+	serverApp.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 	serverApp.use("/api/heroes", require("./api/heroes"))
+	serverApp.use('/api/users', require('./api/users'));
+	serverApp.use('/auth', require('./auth'));
+
+
+
 
 
 /*

@@ -10,6 +10,7 @@ import { HeroDetail } from './components/HeroDetail.component';
 import { HeroList } from './components/HeroList.component';
 import { NothingHere } from './components/NothingHere.component';
 import { HomeComponent } from './components/Home.component';
+import { LoginComponent } from './components/login.component'
 import { HTTP_PROVIDERS } from 'angular2/http';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy, LocationStrategy, } from 'angular2/router';
 
@@ -18,10 +19,11 @@ import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy,
     directives: [ROUTER_DIRECTIVES],
     template: `
   <div>
-    <nav class="ui three item menu">
+    <nav class="ui four item menu">
         <a class="item" [routerLink]="['/Home']">Home</a>
         <a class="item" [routerLink]="['/Heroes']">Hero List</a>
         <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
+        <a class="item" [routerLink]="['/Login']">Login</a>
     </nav>
     <div  class="ui three column centered grid">
     <router-outlet></router-outlet>
@@ -37,6 +39,7 @@ import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy,
         { path: '/hero/:_id', name: 'HeroDetail', component: HeroDetail },
         { path: '/', name: 'root', redirectTo: ['/Home'] },
         { path: '/nothinghere', name: 'NothingHere', component: NothingHere },
+        { path: '/Login', name: 'Login', component: LoginComponent },
     ])
 export class HeroApp {
 

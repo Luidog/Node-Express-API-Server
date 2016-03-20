@@ -44,6 +44,7 @@ var express = require("express"),
 	bodyParser = require("body-parser"),
 	logger = require("./configuration/winston"),
 
+
 /* 
 	We then require our options for our MongoDB Database. 
 	Inside this file we set the port, location, and if we should seed
@@ -56,14 +57,15 @@ var express = require("express"),
  		https://en.wikipedia.org/wiki/Separation_of_concerns
  */
 
-	config = require("./configuration/mongoDbOptions");
+	mongoDBOptions = require("./configuration/mongoDBOptions"),
+	serverOptions = require("./configuration/serverOptions");
 
 /*
 	Next we use Mongoose to connect to our MongoDB instance. It should be noted that MongoDB already needs to be running. I am sure
 	I will recap this during the presentation. If you missed it, come to the next one. Perhaps I will add it to this project in the
 	future. It would be even better if you did though. Github is our friend.	
 */
-mongoose.connect(config.dbURL)
+mongoose.connect(mongoDBOptions.dbURL)
 mongoose.connection.on("error", function(error){
 	logger.error("MongoDB connection error: " + error)
 }) 
@@ -94,8 +96,8 @@ var	server = http.createServer(serverApp);
 	database with records.
 */
 
-if(config.seedDB){ 
-	config.seedData()
+if(mongoDBOptions.seedDB){ 
+	mongoDBOptions.seedData()
 } 
 
 /*
@@ -108,8 +110,8 @@ serverApp.use(bodyParser.urlencoded({ extended: false }))    // parse applicatio
 serverApp.use(bodyParser.json())
 
 function startServer(){
-	server.listen(config.port, function(){
-		logger.info("Express Server running on port: " + config.port)
+	server.listen(serverOptions.port, function(){
+		logger.info("Express Server running on port: " + serverOptions.port)
 	})
 }
 

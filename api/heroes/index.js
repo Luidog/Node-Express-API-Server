@@ -10,8 +10,6 @@ var express = require("express"),
 
 var router = express.Router();
 
-router.use(bodyParser.json()); // for parsing application/json
-router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);

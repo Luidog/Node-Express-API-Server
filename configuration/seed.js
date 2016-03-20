@@ -1,6 +1,7 @@
 'use strict';
 
 var Hero = require('../api/heroes/hero.model'),
+	User = require('../api/users/user.model'),
 	logger = require("./winston");
 
 var seed = {
@@ -67,6 +68,21 @@ Hero.find({})
     }).then(function() {
       logger.info('finished populating Heroes');
     });
+    User.find({}).removeAsync()
+  .then(function() {
+    User.createAsync({
+      provider: 'local',
+      role: 'admin',
+      name: 'Lui de la Parra',
+      email: 'noreply@apple.com',
+      password: 'apple',
+      devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}
+  	})
+  return "true"
+  })
+  .then(function() {
+	  logger.info("finished Populating Users")
+	  })
 
 }
   module.exports = seed
