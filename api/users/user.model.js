@@ -15,7 +15,8 @@ var Devices = new Schema({
 })
 
 var UserSchema = new Schema({
-  name: String,
+  firstName: String,
+  lastName: String,
   email: {
     type: String,
     lowercase: true
@@ -28,10 +29,7 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   favorites: Array,
-  devices: [Devices],
-  facebook: {},
-  google: {},
-  github: {}
+  devices: [Devices]
 });
 
 /**

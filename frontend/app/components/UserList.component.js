@@ -46,7 +46,7 @@ System.register(['angular2/core', 'angular2/common', '../services/HeroService.se
                         providers: [HeroService_service_1.HeroService],
                         directives: [common_1.CORE_DIRECTIVES],
                         bindings: [HeroService_service_1.HeroService],
-                        template: "\n\t<div style=\"padding-top: 30px\">\n\t<div class=\"ui divided list\">\n\t\t<h1>Hero List</h1>\n\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\" *ngFor=\"#hero of heroes\">\n\t\t\t<div  class=\"item\" (click)=\"selectedHero(hero._id)\">\n\t\t\t\t<div class=\"content\">\n\t\t\t \t<h1> {{hero.heroName}}  || {{ hero.firstName }} {{ hero.lastName}}</h1>\n\t\t\t \t</div>\n\t\t\t \t<div class=\"description\">\n\t\t\t \tID: {{ hero._id }}\n\t\t\t \t</div>\n\t\t\t </div>\n\t\t</div>\n\t</div>\n\t</div>\n\t"
+                        template: "\n\t<div class=\"ui divided list\">\n\t\t<h1>Hero List</h1>\n\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\" *ngFor=\"#hero of heroes\">\n\t\t\t<div  class=\"item\" (click)=\"selectedHero(hero._id)\">\n\t\t\t\t<div class=\"content\">\n\t\t\t \t<h1> {{hero.heroName}}  || {{ hero.firstName }} {{ hero.lastName}}</h1>\n\t\t\t \t</div>\n\t\t\t \t<div class=\"description\">\n\t\t\t \tID: {{ hero._id }}\n\t\t\t \t</div>\n\t\t\t </div>\n\t\t</div>\n\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [HeroService_service_1.HeroService, router_1.Router, router_1.RouteParams])
                 ], HeroList);

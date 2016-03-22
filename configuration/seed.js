@@ -73,7 +73,8 @@ Hero.find({})
     User.createAsync({
       provider: 'local',
       role: 'admin',
-      name: 'Lui de la Parra',
+      firstName: 'Lui',
+      lastName: 'de la Parra',
       email: 'noreply@apple.com',
       password: 'apple',
       devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}

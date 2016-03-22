@@ -32,11 +32,11 @@ function emitEvent(event) {
 }
 
 UserEvents.on('save', function(user){
-	logger.verbose('New user saved, named %s.', user.name)
+	logger.verbose('New user saved, named %s.', user.firstName)
 })
 
 UserEvents.on('remove', function(user){
-	logger.verbose('%s has been removed.', user.name)
+	logger.verbose('%s has been removed.', user.firstName)
 })
 
 module.exports = UserEvents;

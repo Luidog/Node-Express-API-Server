@@ -50,9 +50,8 @@ export class HeroService {
 
        getHero(id: string){
            return this.http.get(this.baseurl + id)
-               .map((res: Response) => {
-                 return res.json();                       
-               });
+               .map(res =>  res.json())
+
        }
 
     private _toURLEncodedString(obj: any): string {

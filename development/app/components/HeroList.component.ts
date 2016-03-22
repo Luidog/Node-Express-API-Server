@@ -10,6 +10,7 @@ import { Hero } from '../datatypes/hero.datatype';
 	directives: [CORE_DIRECTIVES],
 	bindings: [HeroService],
 	template:`
+	<div style="padding-top: 30px">
 	<div class="ui divided list">
 		<h1>Hero List</h1>
 		<div style="border: 2px solid grey; border-radius:5px; margin:5px !important;" class="content" *ngFor="#hero of heroes">
@@ -22,6 +23,7 @@ import { Hero } from '../datatypes/hero.datatype';
 			 	</div>
 			 </div>
 		</div>
+	</div>
 	</div>
 	`
 })

@@ -1,3 +1,5 @@
+import { Power } from "./power.datatype"
+
 
 export class Hero {
 	firstName: string;
@@ -6,7 +8,7 @@ export class Hero {
 	_id: string;
 	powers: any;
 
-	constructor(firstName: string, lastName: string, heroName: string, _id: string, powers: any){
+	constructor(firstName: string, lastName: string, heroName: string, _id: string, powers: any) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.heroName = heroName;

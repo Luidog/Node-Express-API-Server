@@ -58,9 +58,7 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
                 };
                 HeroService.prototype.getHero = function (id) {
                     return this.http.get(this.baseurl + id)
-                        .map(function (res) {
-                        return res.json();
-                    });
+                        .map(function (res) { return res.json(); });
                 };
                 HeroService.prototype._toURLEncodedString = function (obj) {
                     var parts = [];

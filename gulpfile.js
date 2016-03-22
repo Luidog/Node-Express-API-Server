@@ -77,7 +77,7 @@ gulp.task("watch", function(){
 	gulp.watch('./development/templates/*.jade', ["compile-jade"])
 	gulp.watch('./development/app/components/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/app/services/*.*.*', ["transpile-typescript"])
-	gulp.watch('./development/app/datatype/*.*.*', ["transpile-typescript"])
+	gulp.watch('./development/app/datatypes/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/app/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/styles/*.scss', ["compile-sass"])
 	gulp.watch('./*.js', ['restart-server'])

@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, router_1, common_1, UserService_component_1;
-    var LoginComponent;
+    var SignUpComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -27,32 +27,27 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
                 UserService_component_1 = UserService_component_1_1;
             }],
         execute: function() {
-            LoginComponent = (function () {
-                function LoginComponent(router, _userService) {
+            SignUpComponent = (function () {
+                function SignUpComponent(router, _userService) {
                     this.router = router;
                     this._userService = _userService;
                 }
-                LoginComponent.prototype.login = function (event, email, password) {
+                SignUpComponent.prototype.signup = function (event, firstname, lastname, email, password) {
                     event.preventDefault();
-                    this._userService.login(email, password);
-                    return this.router.parent.navigate(['/Home']);
+                    this._userService.signUp(firstname, lastname, email, password);
                 };
-                LoginComponent.prototype.signup = function (event) {
-                    event.preventDefault();
-                    this.router.parent.navigateByUrl('/signup');
-                };
-                LoginComponent = __decorate([
+                SignUpComponent = __decorate([
                     core_1.Component({
                         selector: 'login',
                         directives: [router_1.RouterLink, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
                         providers: [UserService_component_1.UserService],
-                        template: "\n  <div style=\"padding-top: 30px\">\n    <h1>Login</h1>\n    <div style=\"width: 500px\">\n      <form class=\"ui form\" role=\"form\" (submit)=\"login($event, username.value, password.value)\">\n        <div style=\"padding-bottom: 10px\">\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #username  id=\"username\" placeholder=\"Username\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" #password class=\"form-control\" id=\"password\" placeholder=\"Password\">\n          </div>\n        <button type=\"submit\" class=\"ui button active\">Submit</button>\n        <button [routerLink]=\"['/SignUp']\" class=\"ui button\">Sign Up</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  "
+                        template: "\n  <div style=\"padding-top: 30px\">\n    <h1>Sign Up</h1>\n    <div style=\"width: 500px\">\n      <form class=\"ui form\" role=\"form\" (submit)=\"signup($event,firstName.value,lastName.value, email.value, password.value)\">\n        <div style=\"padding-bottom: 10px\">\n        <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #firstName  id=\"username\" placeholder=\"First Name\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #lastName  id=\"username\" placeholder=\"Last Name\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #email  id=\"username\" placeholder=\"Email\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" #password class=\"form-control\" id=\"password\" placeholder=\"Password\">\n          </div>\n        <button type=\"submit\" class=\"ui button active\">Submit</button>\n        <button [routerLink]=\"['/Login']\" class=\"ui button\">Login</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, UserService_component_1.UserService])
-                ], LoginComponent);
-                return LoginComponent;
+                ], SignUpComponent);
+                return SignUpComponent;
             }());
-            exports_1("LoginComponent", LoginComponent);
+            exports_1("SignUpComponent", SignUpComponent);
         }
     }
 });

@@ -8,7 +8,7 @@ import { Hero } from '../datatypes/hero.datatype';
     selector: 'hero-form',
     providers: [HeroService],
     template: `
-    <div>
+    <div style="padding-top: 30px">
         <h1>Add A Hero</h1>
         <div style="width: 500px">
             <form class="ui form" #f='ngForm' (ngSubmit)="makeRequest(f.value)">

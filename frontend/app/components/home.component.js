@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, common_1;
     var HomeComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
             HomeComponent = (function () {
                 function HomeComponent() {
+                    this.token = localStorage.getItem('RestServerWebToken');
+                    console.log(this.token);
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
                         selector: 'home-page',
-                        template: "\n\t\t<div class=\"centered row\">\n    \t\t<div class=\"column\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t\t<div>\n    \t\t\t<p>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></p>\n    \t\t</div>\n\t\t</div>\n\t"
+                        directives: [common_1.CORE_DIRECTIVES],
+                        template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t    <div class=\"ui raised segment\" *ngIf=\"token\">\n    \t\t\t<h3>Your token is: {{token}}</h3>\n    \t\t</div>\n    \t\t<div class=\"centered row\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t</div>\n    \t<div>\n    \t\t<div>\n\n    \t\t\t<h1>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></h1>\n    \t\t</div>\n\t\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);
