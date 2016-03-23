@@ -24,10 +24,10 @@ export class UserService{
 			.subscribe( response => { localStorage.setItem('RestServerWebToken', response) }, error => { alert(error.text());});		
 	}
 
-	signUp(firstname, lastname, email, password) {
-		let body = { 'firstName': firstname, 'lastName': lastname, 'email': email, 'password': password });
-		console.log(body)
-		let newRequest: string = this._toURLEncodedString(body)
+	signUp(firstname, lastname, username, email, password) {
+		let body = { 'firstName': firstname, 'lastName': lastname, 'username': username, 'email': email, 'password': password };
+		console.log(body);
+		let newRequest: string = this._toURLEncodedString(body);
 		console.log(newRequest)
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -35,6 +35,7 @@ export class UserService{
 			.map(res => { return res.json().token })
 			.subscribe( response => { localStorage.setItem('RestServerWebToken', response) }, error => { alert(error.text());});		
 	}
+
 	private _toURLEncodedString(obj: any): string {
         let parts = [];
         for (var i in obj) {

@@ -1,13 +1,16 @@
 import { Component } from 'angular2/core'
 import {CORE_DIRECTIVES} from 'angular2/common'
+import { JwtHelper } from '../services/angular2-jwt'
 
 @Component({
 	selector: 'home-page',
-	directives: [CORE_DIRECTIVES] ,
+	directives: [CORE_DIRECTIVES],
+	providers: [JwtHelper],
 	template: `
 		<div style="padding-top: 30px">
-		    <div class="ui raised segment" *ngIf="token">
-    			<h3>Your token is: {{token}}</h3>
+		    <div class="ui raised segment" *ngIf="!tokenExpired">
+    			<h3>You are logged in as:</h3>
+    			<p>{{username}}</p>
     		</div>
     		<div class="centered row">
     			<img width="737" height="556" alt="ASCII-apple logo" src="http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556">
@@ -24,10 +27,16 @@ import {CORE_DIRECTIVES} from 'angular2/common'
 
 export class HomeComponent{
 	token: string;
+	tokenExpired: boolean;
+	username: string
 
-	constructor(){
+	constructor(private _jwtHelper: JwtHelper){
+
 		this.token = localStorage.getItem('RestServerWebToken');
-		console.log(this.token)
+		let decodedToken = this._jwtHelper.decodeToken(this.token);
+		this.tokenExpired = this._jwtHelper.isTokenExpired(this.token);
+		this.username = decodedToken.userName;
+		console.log(this.tokenExpired)
 
 	}
 }

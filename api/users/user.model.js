@@ -17,10 +17,8 @@ var Devices = new Schema({
 var UserSchema = new Schema({
   firstName: String,
   lastName: String,
-  email: {
-    type: String,
-    lowercase: true
-  },
+  username: { type: String, required: true, unique: true },
+  email:  { type: String, required: true, unique: true },
   role: {
     type: String,
     default: 'user'

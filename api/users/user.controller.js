@@ -58,8 +58,8 @@ exports.create = function(req, res, next) {
   newUser.role = 'user';
   newUser.saveAsync()
     .spread(function(user) {
-      var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-        expiresInMinutes: 60 * 5
+      var token = jwt.sign({ _id: user._id, username: user.username, role: user.role }, config.secrets.session, {
+        expiresIn: 3600
       });
       res.json({ token: token });
     })

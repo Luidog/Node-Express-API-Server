@@ -39,8 +39,8 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../common/headers
                         .map(function (res) { return res.json().token; })
                         .subscribe(function (response) { localStorage.setItem('RestServerWebToken', response); }, function (error) { alert(error.text()); });
                 };
-                UserService.prototype.signUp = function (firstname, lastname, email, password) {
-                    var body = { 'firstName': firstname, 'lastName': lastname, 'email': email, 'password': password };
+                UserService.prototype.signUp = function (firstname, lastname, username, email, password) {
+                    var body = { 'firstName': firstname, 'lastName': lastname, 'username': username, 'email': email, 'password': password };
                     console.log(body);
                     var newRequest = this._toURLEncodedString(body);
                     console.log(newRequest);

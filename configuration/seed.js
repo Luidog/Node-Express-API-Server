@@ -75,6 +75,7 @@ Hero.find({})
       role: 'admin',
       firstName: 'Lui',
       lastName: 'de la Parra',
+      username: 'luidog',
       email: 'noreply@apple.com',
       password: 'apple',
       devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}
