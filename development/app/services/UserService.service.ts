@@ -1,19 +1,33 @@
 import { Http, Headers, Response } from 'angular2/http';
 import { Injectable } from 'angular2/core';
-import 'rxjs/Rx'; 
+import { AuthHttp, JwtHelper } from './angular2-jwt'; 
 import { contentHeaders } from '../common/headers';
+import 'rxjs/Rx'; 
 
 @Injectable()
 export class UserService{
 	baseURL: string;
 	authURL: string;
 	apiURL: string;
+	token: string;
 
-	constructor(public http: Http) {
+	constructor(public http: Http, private _authHttp: AuthHttp, private _jwtHelper: JwtHelper) {
         console.log('User Service Created.', http)
         this.baseURL = 'http://localhost:3000/';
         this.authURL = 'auth/local'
         this.apiURL = 'api/users/'
+        this.token = localStorage.getItem('RestServerWebToken');
+        this.tokenstuff()
+    }
+
+    getUserInfo(){
+			return this._authHttp.get(this.baseURL + this.apiURL + '/me', { headers: contentHeaders })
+				.map(res => res.json())
+    }
+
+    getUsers(){
+			return this._authHttp.get(this.baseURL + this.apiURL, { headers: contentHeaders })
+				.map(res => res.json())
     }
 
 
@@ -45,4 +59,15 @@ export class UserService{
         }
         return parts.join("&");
     }
+    tokenstuff(){
+		let decodedToken = this._jwtHelper.decodeToken(this.token);
+		let tokenExpired = this._jwtHelper.isTokenExpired(this.token);
+		console.log(decodedToken)
+	}
+
+	idFromToken(token: any): string{
+		let decodedToken = this._jwtHelper.decodeToken(this.token);
+		return decodedToken._id
+
+	}
 }

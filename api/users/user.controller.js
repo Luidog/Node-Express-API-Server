@@ -167,7 +167,7 @@ exports.me = function(req, res, next) {
       if (!user) {
         return res.status(401).end();
       }
-      res.json(user);
+      return res.json(user);
     })
     .catch(function(err) {
       return next(err);

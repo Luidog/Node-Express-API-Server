@@ -37,6 +37,7 @@ export class HomeComponent{
 		this.tokenExpired = this._jwtHelper.isTokenExpired(this.token);
 		this.username = decodedToken.userName;
 		console.log(this.tokenExpired)
+		console.log(decodedToken._id)
 
 	}
 }

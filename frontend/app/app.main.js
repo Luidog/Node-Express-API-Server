@@ -1,5 +1,5 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
-System.register(['angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/Home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', 'angular2/http', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/Home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', './components/UserPage.component', 'angular2/http', 'angular2/router', './services/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, Home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, http_1, router_1;
+    var browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, Home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, UserPage_component_1, http_1, router_1, angular2_jwt_1;
     var HeroApp;
     return {
         setters:[
@@ -45,11 +45,17 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
             function (SignUp_component_1_1) {
                 SignUp_component_1 = SignUp_component_1_1;
             },
+            function (UserPage_component_1_1) {
+                UserPage_component_1 = UserPage_component_1_1;
+            },
             function (http_1_1) {
                 http_1 = http_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (angular2_jwt_1_1) {
+                angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
             HeroApp = (function () {
@@ -70,13 +76,20 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
                         { path: '/nothinghere', name: 'NothingHere', component: NothingHere_component_1.NothingHere },
                         { path: '/Login', name: 'Login', component: login_component_1.LoginComponent },
                         { path: '/SignUp', name: 'SignUp', component: SignUp_component_1.SignUpComponent },
+                        { path: '/UserPage', name: 'UserPage', component: UserPage_component_1.UserPage },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], HeroApp);
                 return HeroApp;
             }());
             exports_1("HeroApp", HeroApp);
-            browser_1.bootstrap(HeroApp, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy })]);
+            browser_1.bootstrap(HeroApp, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, core_1.provide(angular2_jwt_1.AuthHttp, { useFactory: function (http) {
+                        return new angular2_jwt_1.AuthHttp(new angular2_jwt_1.AuthConfig({
+                            tokenName: 'RestServerWebToken'
+                        }), http);
+                    },
+                    deps: [http_1.Http]
+                }), core_1.provide(router_1.LocationStrategy, { useClass: router_1.HashLocationStrategy }), angular2_jwt_1.JwtHelper]);
         }
     }
 });

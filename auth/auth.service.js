@@ -27,10 +27,10 @@ function isAuthenticated() {
       User.findByIdAsync(req.user._id)
         .then(function(user) {
           if (!user) {
-            return res.status(401).end();
+           return res.status(401).end();
           }
-          req.user = user;
-          next();
+         req.user = user;
+          next()
         })
         .catch(function(err) {
           return next(err);

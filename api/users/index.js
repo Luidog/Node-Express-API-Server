@@ -9,7 +9,7 @@ var router = express.Router();
 router.post('/', controller.create);
 router.get('/',  controller.index); 
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
-router.get('/me',auth.isAuthenticated(), controller.me); 
+router.get('/me', auth.isAuthenticated(), controller.me); 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.post('/addfavorite',auth.isAuthenticated(), controller.addFavorite); //  
 router.post('/removefavorite', auth.isAuthenticated(), controller.removeFavorite);

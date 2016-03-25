@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/common', '../services/UserService.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/common', '../services/UserService.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, common_1, UserService_component_1;
+    var core_1, router_1, common_1, UserService_service_1;
     var SignUpComponent;
     return {
         setters:[
@@ -23,8 +23,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
             function (common_1_1) {
                 common_1 = common_1_1;
             },
-            function (UserService_component_1_1) {
-                UserService_component_1 = UserService_component_1_1;
+            function (UserService_service_1_1) {
+                UserService_service_1 = UserService_service_1_1;
             }],
         execute: function() {
             SignUpComponent = (function () {
@@ -40,10 +40,10 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
                     core_1.Component({
                         selector: 'login',
                         directives: [router_1.RouterLink, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
-                        providers: [UserService_component_1.UserService],
+                        providers: [UserService_service_1.UserService],
                         template: "\n  <div style=\"padding-top: 30px\">\n    <h1>Sign Up</h1>\n    <div style=\"width: 500px\">\n      <form class=\"ui form\" role=\"form\" (submit)=\"signup($event,firstName.value,lastName.value, username.value, email.value, password.value)\">\n        <div style=\"padding-bottom: 10px\">\n        <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #firstName  id=\"username\" placeholder=\"First Name\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #lastName  id=\"username\" placeholder=\"Last Name\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #username  id=\"username\" placeholder=\"username\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Email</label>\n            <input type=\"text\" #email  id=\"email\" placeholder=\"Email\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" #password class=\"form-control\" id=\"password\" placeholder=\"Password\">\n          </div>\n        <button type=\"submit\" class=\"ui button active\">Submit</button>\n        <button [routerLink]=\"['/Login']\" class=\"ui button\">Login</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  "
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router, UserService_component_1.UserService])
+                    __metadata('design:paramtypes', [router_1.Router, UserService_service_1.UserService])
                 ], SignUpComponent);
                 return SignUpComponent;
             }());

@@ -1,7 +1,7 @@
 import { Component} from 'angular2/core';
 import { Router, RouterLink } from 'angular2/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { UserService } from '../services/UserService.component'
+import { UserService } from '../services/UserService.service'
 
 
 

@@ -1,7 +1,8 @@
 import { Component } from 'angular2/core';
 import { Router, RouterLink } from 'angular2/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { UserService } from '../services/UserService.component'
+import { UserService } from '../services/UserService.service';
+
 
 
 
@@ -33,7 +34,7 @@ import { UserService } from '../services/UserService.component'
 })
 export class LoginComponent {
   
-  constructor(public router: Router, private _userService: UserService) {
+  constructor(public router: Router, public _userService: UserService) {
   }
 
   login(event, email, password) {

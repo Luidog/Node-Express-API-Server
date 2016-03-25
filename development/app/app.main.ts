@@ -13,8 +13,10 @@ import { HomeComponent } from './components/Home.component';
 import { LoginComponent } from './components/login.component';
 import { LoginBar } from './components/LoginBar.component';
 import { SignUpComponent } from './components/SignUp.component';
-import { HTTP_PROVIDERS } from 'angular2/http';
+import { UserPage } from './components/UserPage.component'
+import { HTTP_PROVIDERS, Http } from 'angular2/http';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy, LocationStrategy, } from 'angular2/router';
+import { AuthHttp, AuthConfig, JwtHelper } from './services/angular2-jwt';
 
 @Component({
     selector: 'hero-app',
@@ -45,6 +47,7 @@ import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy,
         { path: '/nothinghere', name: 'NothingHere', component: NothingHere },
         { path: '/Login', name: 'Login', component: LoginComponent },
         { path: '/SignUp', name: 'SignUp', component: SignUpComponent },
+        { path: '/UserPage', name: 'UserPage', component: UserPage },
     ])
 export class HeroApp {
 
@@ -54,4 +57,10 @@ export class HeroApp {
 
 }
 
-bootstrap(HeroApp, [HTTP_PROVIDERS,ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);
+bootstrap(HeroApp, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(AuthHttp, { useFactory: (http) => {
+ return new AuthHttp(new AuthConfig({
+            tokenName: 'RestServerWebToken'
+        }), http);
+    },
+    deps: [Http]
+}), provide(LocationStrategy, { useClass: HashLocationStrategy }), JwtHelper]);

@@ -12,6 +12,7 @@ import { NgClass } from 'angular2/common';
 				<nav [ngClass]="{invisible: !isOn, visible: isOn}">
 					<a class="item" [routerLink]="['/Login']">Login</a>
 					<a class="item" [routerLink]="['/SignUp']">Sign Up</a>
+					<a class="item" [routerLink]="['/UserPage']">User Page</a>
 				</nav>
 			</div>
 		</div>

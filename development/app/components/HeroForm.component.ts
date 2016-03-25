@@ -1,3 +1,5 @@
+/// <reference path="../../../configuration/es6-shim.d.ts" />
+
 import { HeroService } from '../services/HeroService.service';
 import { Component } from 'angular2/core';
 import { FORM_DIRECTIVES } from 'angular2/common';

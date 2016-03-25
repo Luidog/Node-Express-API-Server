@@ -1,3 +1,4 @@
+/// <reference path="../../../configuration/es6-shim.d.ts" />
 System.register(['../services/HeroService.service', 'angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
