@@ -66,7 +66,7 @@ gulp.task("serve", function(){
 
 gulp.task('transpile-typescript', function() {
 	logger.info("Transpiling Typescript.")
-	gulp.src("./development/app/**/*.ts")
+	gulp.src("./development/app/**/*.*.ts")
 //		.pipe(plumber({ errorHandler: onError}))
     	.pipe(ts(tsProject))
 		.pipe(gulp.dest('./frontend/app/'));

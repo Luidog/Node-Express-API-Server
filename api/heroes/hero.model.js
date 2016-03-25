@@ -46,6 +46,12 @@ var SuperPowers = new Schema({
 	power: String
 })
 
+var FansSchema = new Schema({
+	userId: {type: String, required: true},
+	userName: {type: String, required: true} ,
+	fanSince: {type: Date, default: Date.now} 
+})
+
 /*
 	Here is our main schema where we will be saving our information.
 */
@@ -55,6 +61,7 @@ var HeroSchema = new Schema({
 	heroName: String,
 	firstName: String,
 	lastName: String,
+	fans: [FansSchema],
 	powers: [SuperPowers]
 
 })

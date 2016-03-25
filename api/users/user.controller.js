@@ -1,10 +1,11 @@
 'use strict';
 
-var User = require('./user.model');
-var UserEvents = require("./user.events");
-var passport = require('passport');
-var config = require('../../configuration/serverOptions');
-var jwt = require('jsonwebtoken');
+var User = require('./user.model'),
+    Hero = require('../heroes/hero.model'),
+    UserEvents = require("./user.events"),
+    passport = require('passport'),
+    config = require('../../configuration/serverOptions'),
+    jwt = require('jsonwebtoken');
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -41,11 +42,13 @@ function respondWith(res, statusCode) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  console.log(req)
-  User.findAsync({}, '-salt -hashedPassword')
+  console.log('index fired')
+  User.findAsync({}) // , '-salt -hashedPassword'
     .then(function(users) {
-     res.status(200).json(users);  })
-  //  .catch(handleError(res));
+        res.status(200).json(users);
+    })  
+     .catch(handleError(res));
+
 };
 
 /**
@@ -100,17 +103,14 @@ exports.destroy = function(req, res) {
  * Adds Favorites to  a user
  */
 exports.addFavorite = function(req, res) {
-	console.log(req.body.beachId)
-	User.findByIdAndUpdateAsync(req.body.userId,
-		{$addToSet: { favorites: req.body.beachId } },
-		{safe: true, upsert: true},
-		function(err, model) {
-	   	 	if (err){
-	   	 	console.log(err)
-	    	}
-	    console.log(req.body.beachId)
-        res.status(204).end();
-    })
+	let userId = req.body.userId;
+  let userName = req.body.userName;
+  let heroId = req.body.heroId; 
+	User.findByIdAndUpdateAsync( userId, {$addToSet: { favorites: heroId } }, {safe: true, upsert: true})
+    .then(function(){console.log('user updated')})
+  Hero.findByIdAndUpdateAsync(heroId, {$addToSet: { fans: [{ userName: userName, userId: userId }]}})
+      .then(_responseWithResult(res))
+      .catch(console.log(res))
 };
 
 /**

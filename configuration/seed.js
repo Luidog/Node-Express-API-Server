@@ -75,9 +75,27 @@ Hero.find({})
       role: 'admin',
       firstName: 'Lui',
       lastName: 'de la Parra',
-      username: 'luidog',
+      username: 'LuiDog',
       email: 'noreply@apple.com',
       password: 'apple',
+      devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}
+  	},{
+      provider: 'local',
+      role: 'user',
+      firstName: 'Benjamin',
+      lastName: 'de la Parra',
+      username: 'BEnJAMIN',
+      email: 'ben@apple.com',
+      password: 'ben',
+      devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}
+  	},{
+      provider: 'local',
+      role: 'user',
+      firstName: 'Kirby',
+      lastName: 'de la Parra',
+      username: 'Kirbster',
+      email: 'kirby@apple.com',
+      password: 'woof',
       devices: {deviceName: 'iPhone 6s', deviceType: 'iPhone', deviceToken: '<00000000000000000000000>'}
   	})
   return "true"
