@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/common'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/common', '../services/UserService.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common'], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, common_1;
+    var core_1, router_1, common_1, UserService_service_1;
     var LoginBar;
     return {
         setters:[
@@ -22,26 +22,33 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common'], functio
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (UserService_service_1_1) {
+                UserService_service_1 = UserService_service_1_1;
             }],
         execute: function() {
             LoginBar = (function () {
-                function LoginBar() {
+                function LoginBar(_userService) {
+                    this._userService = _userService;
                     this.isOn = false;
                     this.isDisabled = false;
                 }
-                LoginBar.prototype.toggle = function (newState) {
-                    if (!this.isDisabled) {
-                        this.isOn = newState;
-                    }
+                LoginBar.prototype.logout = function () {
+                    this._userService.logout();
+                };
+                LoginBar.prototype.toggleState = function (State) {
+                    var newstate = !State;
+                    this.isOn = newstate;
                 };
                 LoginBar = __decorate([
                     core_1.Component({
                         selector: 'login-bar',
                         directives: [router_1.ROUTER_DIRECTIVES, common_1.NgClass],
-                        template: "\n\t\t<div>\n\t\t\t<div>\n\t\t\t\t<button [ngClass]=\"{blue: isOn, invisible: isOn}\" (click)=\"toggle(!isOn)\">Slide in on top</button>\n\t\t\t\t<nav [ngClass]=\"{invisible: !isOn, visible: isOn}\">\n\t\t\t\t\t<a class=\"item\" [routerLink]=\"['/Login']\">Login</a>\n\t\t\t\t\t<a class=\"item\" [routerLink]=\"['/SignUp']\">Sign Up</a>\n\t\t\t\t\t<a class=\"item\" [routerLink]=\"['/UserPage']\">User Page</a>\n\t\t\t\t</nav>\n\t\t\t</div>\n\t\t</div>\n\t",
-                        styles: ["\n\t\t.blue {\n\t\t\tcolor: blue;\n\t\t\t-webkit-animation-name: example; /* Chrome, Safari, Opera */\n    \t\t-webkit-animation-duration: 4s; /* Chrome, Safari, Opera */\n\t\t}\n\t\t.invisible{\n\t\t\tdisplay: none;\n\t\t}\n\n\t\t.visible{\n\t\t\tbackground-color: Black\n\t\t}\n\n\t/* Chrome, Safari, Opera */\n\t@-webkit-keyframes example {\n\t    0%   {background-color: red;}\n\t    25%  {background-color: yellow;}\n\t    50%  {background-color: blue;}\n\t    100% {background-color: green;}\n\t}\n\n\t/* Standard syntax */\n\t@keyframes example {\n\t    0%   {background-color: red;}\n\t    25%  {background-color: yellow;}\n\t    50%  {background-color: blue;}\n\t    100% {background-color: green;}\n\t}\n\t"]
+                        providers: [UserService_service_1.UserService],
+                        template: "\n\t\t<div class=\"menu-wrap\">\n\t\t<button [ngClass]=\"{hidden: isOn }\" (click)=\"toggleState(isOn)\" id=\"open-button\"><span>Open Menu</span></button>\n\t\t\t\t<nav [ngClass]=\"{hidden: !isOn, navbar: isOn}\" class=\"menu\">\n\t\t\t\t\t<a class=\"link-list\" [routerLink]=\"['/Login']\">Login</a>\n\t\t\t\t\t<a class=\"link-list\" [routerLink]=\"['/SignUp']\">Sign Up</a>\n\t\t\t\t\t<a class=\"link-list\" [routerLink]=\"['/UserPage']\">User Page</a>\n\t\t\t\t\t<a class=\"link-list\" (click)=\"logout()\">Logout</a>\n\t\t\t\t</nav>\n\t\t</div>\n\t",
+                        styles: ["\n\t.hidden{\n\t\tdisplay: none;\n\t}\n\t.nav li ul {\n    position:absolute;\n    left:0;\n    top:36px;\n    z-index:1;\n\t}\n\t.navbar{\n   \t \toverflow:hidden;\n    \t-webkit-transition:height 200ms ease-in;\n    \t-moz-transition:height 200ms ease-in;\n    \t-o-transition:height 200ms ease-in;\n    \ttransition:height 200ms ease-in;\n}\n.nav ul > li:hover ul li {\n    height:36px;\n}\n\t"]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [UserService_service_1.UserService])
                 ], LoginBar);
                 return LoginBar;
             }());

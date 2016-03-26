@@ -37,8 +37,6 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     this.baseURL = 'http://localhost:3000/';
                     this.authURL = 'auth/local';
                     this.apiURL = 'api/users/';
-                    this.token = localStorage.getItem('RestServerWebToken');
-                    this.tokenstuff();
                 }
                 UserService.prototype.getUserInfo = function () {
                     return this._authHttp.get(this.baseURL + this.apiURL + '/me', { headers: headers_1.contentHeaders })

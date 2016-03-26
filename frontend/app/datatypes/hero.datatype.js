@@ -12,7 +12,6 @@ System.register([], function(exports_1, context_1) {
                     this.heroName = heroName;
                     this._id = _id;
                     this.powers = powers;
-                    console.log("New hero created. || Name: %s %s Hero Name: %s || id: %s", firstName, lastName, heroName, _id);
                 }
                 return Hero;
             }());

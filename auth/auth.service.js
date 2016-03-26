@@ -29,13 +29,13 @@ function isAuthenticated() {
           if (!user) {
            return res.status(401).end();
           }
-         req.user = user;
-          next()
+          return req.user = user;  
         })
         .catch(function(err) {
           return next(err);
         });
-    });
+    next()
+  });
 }
 
 /**

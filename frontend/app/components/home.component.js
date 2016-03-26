@@ -10,12 +10,13 @@ System.register(['angular2/core', 'angular2/common', '../services/angular2-jwt']
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, angular2_jwt_1;
+    var core_1, common_1, angular2_jwt_1, core_2;
     var HomeComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+                core_2 = core_1_1;
             },
             function (common_1_1) {
                 common_1 = common_1_1;
@@ -25,23 +26,23 @@ System.register(['angular2/core', 'angular2/common', '../services/angular2-jwt']
             }],
         execute: function() {
             HomeComponent = (function () {
-                function HomeComponent(_jwtHelper) {
+                function HomeComponent(_jwtHelper, _renderer) {
+                    //	this._renderer.setElementClass('div','blue', true)
+                    //	this.token = localStorage.getItem('RestServerWebToken');
+                    //	let decodedToken = this._jwtHelper.decodeToken(this.token);
+                    //	this.tokenExpired = this._jwtHelper.isTokenExpired(this.token);
+                    //	this.username = decodedToken.userName;
                     this._jwtHelper = _jwtHelper;
-                    this.token = localStorage.getItem('RestServerWebToken');
-                    var decodedToken = this._jwtHelper.decodeToken(this.token);
-                    this.tokenExpired = this._jwtHelper.isTokenExpired(this.token);
-                    this.username = decodedToken.userName;
-                    console.log(this.tokenExpired);
-                    console.log(decodedToken._id);
+                    this._renderer = _renderer;
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
                         selector: 'home-page',
                         directives: [common_1.CORE_DIRECTIVES],
-                        providers: [angular2_jwt_1.JwtHelper],
+                        providers: [angular2_jwt_1.JwtHelper, core_2.Renderer],
                         template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t    <div class=\"ui raised segment\" *ngIf=\"!tokenExpired\">\n    \t\t\t<h3>You are logged in as:</h3>\n    \t\t\t<p>{{username}}</p>\n    \t\t</div>\n    \t\t<div class=\"centered row\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t</div>\n    \t<div>\n    \t\t<div>\n\n    \t\t\t<h1>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></h1>\n    \t\t</div>\n\t\t</div>\n\t"
                     }), 
-                    __metadata('design:paramtypes', [angular2_jwt_1.JwtHelper])
+                    __metadata('design:paramtypes', [angular2_jwt_1.JwtHelper, core_2.Renderer])
                 ], HomeComponent);
                 return HomeComponent;
             }());

@@ -16,6 +16,7 @@ import {tokenNotExpired} from '../services/angular2-jwt';
 			<div  class="item">
 				<div class="content">
 			 	<h1> {{user?.username}}  || {{ user?.firstName }} {{ user?.lastName}}</h1>
+			 	<h2>{{user?.email }}</h2>
 			 	</div>
 			 	<div class="description">
 			 		<p> Role: {{ user?.role }} </p>
@@ -24,12 +25,12 @@ import {tokenNotExpired} from '../services/angular2-jwt';
 					<div style="border: 2px solid grey; border-radius:5px; margin:5px !important;" class="item" *ngIf="user.role != 'admin'">
 						<div class="content">
 						<button (click)="deleteUser(user._id)">Delete user</button>
-			 				<h1> {{user.username }}  || {{ user.firstName }} {{ user.lastName }}</h1>
-			 				<h2> {{user.email }} </h2>
+			 				<h1> {{user?.username }}  || {{ user?.firstName }} {{ user?.lastName }}</h1>
+			 				<h2> {{user?.email }} </h2>
 			 			<button (click)="makeAdmin()">make Admin</button>
 			 			</div>
 			 		<div class="description">
-			 			<p> Role: {{ user.role }} </p>
+			 			<p> Role: {{ user?.role }} </p>
 			 		</div>
 			 	</div>
 			</div>
@@ -43,15 +44,21 @@ export class UserPage implements OnInit {
 	user: any;
 	users: any;
 
-	constructor(private _userService: UserService) {
+	constructor(private _userService: UserService, public router: Router) {
 	}
 
 	ngOnInit() {
 
-		this._userService.getUserInfo()
-			.subscribe(res => this.user = res)
-		this._userService.getUsers()
-			.subscribe(res => this.users = res)
+		if (tokenNotExpired('RestServerWebToken')) {
+			this._userService.getUserInfo()
+				.subscribe(res => this.user = res)
+			this._userService.getUsers()
+				.subscribe(res => this.users = res)
+		} else {
+			return this.router.parent.navigate(['/Login']);
+
+			
+		}
 	}
 
 	deleteUser(userid: string): void{

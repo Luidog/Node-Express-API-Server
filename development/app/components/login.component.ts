@@ -14,7 +14,7 @@ import { UserService } from '../services/UserService.service';
   <div style="padding-top: 30px">
     <h1>Login</h1>
     <div style="width: 500px">
-      <form class="ui form" role="form" (submit)="login($event, username.value, password.value)">
+      <form class="ui form" role="form">
         <div style="padding-bottom: 10px">
           <div style="width: 500px" class="field ui input">
             <label for="username">Username</label>
@@ -24,7 +24,7 @@ import { UserService } from '../services/UserService.service';
             <label for="password">Password</label>
             <input type="password" #password class="form-control" id="password" placeholder="Password">
           </div>
-        <button type="submit" class="ui button active">Submit</button>
+        <button type="submit" (click)="login($event, username.value, password.value)" class="ui button active">Submit</button>
         <button [routerLink]="['/SignUp']" class="ui button">Sign Up</button>
         </div>
       </form>
@@ -35,6 +35,7 @@ import { UserService } from '../services/UserService.service';
 export class LoginComponent {
   
   constructor(public router: Router, public _userService: UserService) {
+
   }
 
   login(event, email, password) {

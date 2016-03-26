@@ -37,7 +37,6 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
                     return this.http.post(this.baseurl, newRequest, { headers: headers })
                         .map(function (responseData) {
-                        console.log(responseData.json());
                         return responseData.json();
                     });
                 };

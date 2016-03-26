@@ -7,8 +7,6 @@ import { Hero } from '../datatypes/hero.datatype';
 import { HeroService } from '../services/HeroService.service';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 
-@Pipe({ name: 'derp' })
-
 
 @Component({
 	selector: 'hero-details',

@@ -16,8 +16,6 @@ export class UserService{
         this.baseURL = 'http://localhost:3000/';
         this.authURL = 'auth/local'
         this.apiURL = 'api/users/'
-        this.token = localStorage.getItem('RestServerWebToken');
-        this.tokenstuff()
     }
 
     getUserInfo(){

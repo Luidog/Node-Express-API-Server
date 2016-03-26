@@ -22,19 +22,21 @@ import { AuthHttp, AuthConfig, JwtHelper } from './services/angular2-jwt';
     selector: 'hero-app',
     directives: [ROUTER_DIRECTIVES, LoginBar],
     template: `
-    <login-bar></login-bar>
-      <div>      
-    <nav class="ui three item menu">
-        <a class="item" [routerLink]="['/Home']">Home</a>
-        <a class="item" [routerLink]="['/Heroes']">Hero List</a>
-        <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
-    </nav>
-    <div>
-        <div  class="ui three column centered grid">
-            <router-outlet></router-outlet>
+    <div class="container">
+        <login-bar></login-bar>
+        <div class="content">      
+            <nav class="ui three item menu">
+                <a class="item" [routerLink]="['/Home']">Home</a>
+                <a class="item" [routerLink]="['/Heroes']">Hero List</a>
+                <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
+            </nav>
+            <div>
+                <div  class="ui three column centered grid">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
         </div>
-    </div>
-  </div>
+
   `
 })
 

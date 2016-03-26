@@ -10,13 +10,12 @@ System.register(['angular2/core', "angular2/router", 'angular2/common', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, core_2, common_1, HeroService_service_1, router_2;
+    var core_1, router_1, common_1, HeroService_service_1, router_2;
     var HeroDetail;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-                core_2 = core_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -42,7 +41,6 @@ System.register(['angular2/core', "angular2/router", 'angular2/common', '../serv
                         .subscribe(function (selectedHero) { return _this.hero = selectedHero; });
                 };
                 HeroDetail = __decorate([
-                    core_2.Pipe({ name: 'derp' }),
                     core_1.Component({
                         selector: 'hero-details',
                         directives: [router_2.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES],

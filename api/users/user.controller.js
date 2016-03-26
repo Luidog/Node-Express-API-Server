@@ -42,8 +42,7 @@ function respondWith(res, statusCode) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  console.log('index fired')
-  User.findAsync({}) // , '-salt -hashedPassword'
+  User.findAsync({}, '-salt -password') 
     .then(function(users) {
         res.status(200).json(users);
     })  
@@ -162,7 +161,7 @@ exports.changePassword = function(req, res, next) {
 exports.me = function(req, res, next) {
   var userId = req.user._id;
 
-  User.findOneAsync({ _id: userId }, '-salt -hashedPassword')
+  User.findOneAsync({ _id: userId }, '-salt -password')
     .then(function(user) { // don't ever give out the password or salt
       if (!user) {
         return res.status(401).end();

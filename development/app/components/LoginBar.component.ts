@@ -1,51 +1,43 @@
 import { Component, OnInit } from 'angular2/core';
 import { ROUTER_DIRECTIVES } from 'angular2/router';
 import { NgClass } from 'angular2/common';
+import { UserService } from '../services/UserService.service'
 
 @Component({
 	selector: 'login-bar',
 	directives: [ROUTER_DIRECTIVES, NgClass],
-	template:`
-		<div>
-			<div>
-				<button [ngClass]="{blue: isOn, invisible: isOn}" (click)="toggle(!isOn)">Slide in on top</button>
-				<nav [ngClass]="{invisible: !isOn, visible: isOn}">
-					<a class="item" [routerLink]="['/Login']">Login</a>
-					<a class="item" [routerLink]="['/SignUp']">Sign Up</a>
-					<a class="item" [routerLink]="['/UserPage']">User Page</a>
+	providers: [UserService],
+	template: `
+		<div class="menu-wrap">
+		<button [ngClass]="{hidden: isOn }" (click)="toggleState(isOn)" id="open-button"><span>Open Menu</span></button>
+				<nav [ngClass]="{hidden: !isOn, navbar: isOn}" class="menu">
+					<a class="link-list" [routerLink]="['/Login']">Login</a>
+					<a class="link-list" [routerLink]="['/SignUp']">Sign Up</a>
+					<a class="link-list" [routerLink]="['/UserPage']">User Page</a>
+					<a class="link-list" (click)="logout()">Logout</a>
 				</nav>
-			</div>
 		</div>
 	`,
 	styles: [`
-		.blue {
-			color: blue;
-			-webkit-animation-name: example; /* Chrome, Safari, Opera */
-    		-webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
-		}
-		.invisible{
-			display: none;
-		}
-
-		.visible{
-			background-color: Black
-		}
-
-	/* Chrome, Safari, Opera */
-	@-webkit-keyframes example {
-	    0%   {background-color: red;}
-	    25%  {background-color: yellow;}
-	    50%  {background-color: blue;}
-	    100% {background-color: green;}
+	.hidden{
+		display: none;
 	}
-
-	/* Standard syntax */
-	@keyframes example {
-	    0%   {background-color: red;}
-	    25%  {background-color: yellow;}
-	    50%  {background-color: blue;}
-	    100% {background-color: green;}
+	.nav li ul {
+    position:absolute;
+    left:0;
+    top:36px;
+    z-index:1;
 	}
+	.navbar{
+   	 	overflow:hidden;
+    	-webkit-transition:height 200ms ease-in;
+    	-moz-transition:height 200ms ease-in;
+    	-o-transition:height 200ms ease-in;
+    	transition:height 200ms ease-in;
+}
+.nav ul > li:hover ul li {
+    height:36px;
+}
 	`]
 })
 
@@ -54,12 +46,15 @@ export class LoginBar{
 	isOn = false;
 	isDisabled = false;
 
-	constructor(){
+	constructor(private _userService: UserService) {
 	}
 
-	toggle(newState) {
-		if (!this.isDisabled) {
-			this.isOn = newState;
-		}
+	logout(){
+		this._userService.logout()
+	}
+
+	toggleState(State) {
+		let	newstate = !State
+		this.isOn = newstate
 	}
 }

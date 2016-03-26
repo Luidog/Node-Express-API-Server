@@ -19,7 +19,6 @@ export class HeroService {
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.baseurl, newRequest, { headers: headers })
             .map((responseData) => {
-              console.log(responseData.json())
                 return responseData.json();
             })
     }
