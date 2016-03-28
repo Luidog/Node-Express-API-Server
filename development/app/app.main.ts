@@ -1,4 +1,5 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
+/// <reference path="../../configuration/es6-shim.d.ts" />
 
 /*
  * Angular

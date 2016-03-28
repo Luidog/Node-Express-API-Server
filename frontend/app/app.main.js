@@ -1,4 +1,5 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
+/// <reference path="../../configuration/es6-shim.d.ts" />
 System.register(['angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/Home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', './components/UserPage.component', 'angular2/http', 'angular2/router', './services/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;

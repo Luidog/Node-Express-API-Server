@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', 'rxjs'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', 'rxjs/subject/BehaviorSubject'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, angular2_jwt_1, headers_1, router_1, rxjs_1;
+    var http_1, core_1, angular2_jwt_1, headers_1, router_1, BehaviorSubject_1;
     var UserService;
     return {
         setters:[
@@ -29,8 +29,8 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (rxjs_1_1) {
-                rxjs_1 = rxjs_1_1;
+            function (BehaviorSubject_1_1) {
+                BehaviorSubject_1 = BehaviorSubject_1_1;
             }],
         execute: function() {
             UserService = (function () {
@@ -39,7 +39,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     this._authHttp = _authHttp;
                     this._jwtHelper = _jwtHelper;
                     this.router = router;
-                    this.currentUser = new rxjs_1.BehaviorSubject(null);
+                    this.currentUser = new BehaviorSubject_1.BehaviorSubject(null);
                     console.log('User Service Created.', http);
                     this.baseURL = 'http://localhost:3000/';
                     this.authURL = 'auth/local';

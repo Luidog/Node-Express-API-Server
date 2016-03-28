@@ -4,7 +4,9 @@ import { AuthHttp, JwtHelper } from './angular2-jwt';
 import { contentHeaders } from '../common/headers';
 import { Router } from 'angular2/router'
 import { User } from '../datatypes/user.datatype'
-import {Subject, BehaviorSubject} from 'rxjs';
+import { Subject } from 'rxjs/Subject'
+import { BehaviorSubject } from 'rxjs/subject/BehaviorSubject';
+
 
 @Injectable()
 export class UserService{

@@ -25,13 +25,12 @@ import { UserService } from '../services/UserService.service'
 	`
 })
 
-export class HomeComponent{
+export class HomeComponent {
 	username: string
 	isLoggedIn: boolean;
 
-	constructor(private _userService: UserService){
-		//this.username = this._userService.getUserName()
-		//this.isLoggedIn = this._userService.isLoggedIn()
-
+	constructor(private _userService: UserService) {
+		this._userService.currentUser
+			.subscribe(res => { console.log(res)})
 	}
 }

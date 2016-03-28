@@ -26,9 +26,9 @@ System.register(['angular2/core', 'angular2/common', '../services/UserService.se
         execute: function() {
             HomeComponent = (function () {
                 function HomeComponent(_userService) {
-                    //this.username = this._userService.getUserName()
-                    //this.isLoggedIn = this._userService.isLoggedIn()
                     this._userService = _userService;
+                    this._userService.currentUser
+                        .subscribe(function (res) { console.log(res); });
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
