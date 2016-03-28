@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/router", 'angular2/common', '../services/HeroService.service'], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/router", 'angular2/common', '../services/HeroService.service', '../services/UserService.service', './HeroDetailFavorites.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "angular2/router", 'angular2/common', '../serv
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, common_1, HeroService_service_1, router_2;
+    var core_1, router_1, common_1, HeroService_service_1, UserService_service_1, router_2, HeroDetailFavorites_component_1;
     var HeroDetail;
     return {
         setters:[
@@ -26,16 +26,27 @@ System.register(['angular2/core', "angular2/router", 'angular2/common', '../serv
             },
             function (HeroService_service_1_1) {
                 HeroService_service_1 = HeroService_service_1_1;
+            },
+            function (UserService_service_1_1) {
+                UserService_service_1 = UserService_service_1_1;
+            },
+            function (HeroDetailFavorites_component_1_1) {
+                HeroDetailFavorites_component_1 = HeroDetailFavorites_component_1_1;
             }],
         execute: function() {
             HeroDetail = (function () {
-                function HeroDetail(_routeParams, _heroService, _router) {
+                function HeroDetail(_routeParams, _heroService, _router, _userService) {
                     this._routeParams = _routeParams;
                     this._heroService = _heroService;
                     this._router = _router;
+                    this._userService = _userService;
                 }
+                HeroDetail.prototype.addHeroToFavorites = function (heroId) {
+                    this._userService.addFavorite(heroId);
+                };
                 HeroDetail.prototype.ngOnInit = function () {
                     var _this = this;
+                    this.isLoggedIn = this._userService.isLoggedIn();
                     var _id = this._routeParams.get("_id");
                     this._heroService.getHero(_id)
                         .subscribe(function (selectedHero) { return _this.hero = selectedHero; });
@@ -43,11 +54,11 @@ System.register(['angular2/core', "angular2/router", 'angular2/common', '../serv
                 HeroDetail = __decorate([
                     core_1.Component({
                         selector: 'hero-details',
-                        directives: [router_2.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES],
-                        providers: [HeroService_service_1.HeroService],
-                        template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t\t<h1>Hero</h1>\n\t\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\">\n\t\t\t\t<div>\n\t\t\t\t\t<h1>{{ hero?.heroName }}</h1>\n\t\t\t\t</div>\n\t\t\t\t<div>\n\t\t\t\t\t<h2>{{ hero?.firstName }} {{hero?.lastName}} </h2>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ui relaxed divided list\"  *ngFor=\"#power of hero?.powers\">\n\t\t\t\t\t<p class=\"item\">{{ power.power }}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<button [routerLink]=\"['/Heroes']\" class=\"ui button\">\n\t\t\t\t\tBack\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</div>\n\t"
+                        directives: [router_2.ROUTER_DIRECTIVES, common_1.CORE_DIRECTIVES, HeroDetailFavorites_component_1.HeroFans],
+                        providers: [HeroService_service_1.HeroService, UserService_service_1.UserService],
+                        template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t\t<h1>Hero</h1>\n\t\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\">\n\t\t\t\t<div>\n\t\t\t\t\t<h1>{{ hero?.heroName }}</h1>\n\t\t\t\t</div>\n\t\t\t\t<div>\n\t\t\t\t\t<h2>{{ hero?.firstName }} {{hero?.lastName}} </h2>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"ui relaxed divided list\"  *ngFor=\"#power of hero?.powers\">\n\t\t\t\t\t<p class=\"item\">{{ power.power }}</p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div>\n\t\t\t\t<button [routerLink]=\"['/Heroes']\" class=\"ui button\">\n\t\t\t\t\tBack\n\t\t\t\t</button>\n\t\t\t\t<button *ngIf=\"isLoggedIn\" (click)=\"addHeroToFavorites(hero?._id)\" class=\"ui button\">\n\t\t\t\t\tadd to Favorites\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t\t<div *ngFor=\"#fan of hero?.fans\">\n\t\t\t\t{{fan | json}}\n\t\t\t\t<hero-fans [fan]=\"fan\"></hero-fans>\n\t\t\t</div>\n\t\t\t<div >\n\t\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t"
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteParams, HeroService_service_1.HeroService, router_1.Router])
+                    __metadata('design:paramtypes', [router_1.RouteParams, HeroService_service_1.HeroService, router_1.Router, UserService_service_1.UserService])
                 ], HeroDetail);
                 return HeroDetail;
             }());

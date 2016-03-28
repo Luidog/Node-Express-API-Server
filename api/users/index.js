@@ -7,13 +7,13 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.post('/', controller.create);
-router.get('/', auth.isAuthenticated(),  controller.index); 
+router.get('/', auth.hasRole('admin'),  controller.index); 
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me); 
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-router.post('/addfavorite',auth.isAuthenticated(), controller.addFavorite); //  
+router.post('/addfavorite',  auth.isAuthenticated(), controller.addFavorite ); // 
 router.post('/removefavorite', auth.isAuthenticated(), controller.removeFavorite);
-router.get('/:id', auth.isAuthenticated(), controller.show);
+router.get('/:id', auth.hasRole('admin'), controller.show);
 
 
 module.exports = router;

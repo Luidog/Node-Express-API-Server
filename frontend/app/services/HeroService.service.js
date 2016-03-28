@@ -28,7 +28,6 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
             HeroService = (function () {
                 function HeroService(http) {
                     this.http = http;
-                    console.log('Hero REST Service Created.', http);
                     this.baseurl = 'http://localhost:3000/api/heroes/';
                 }
                 HeroService.prototype.addAHero = function (heroToAdd) {

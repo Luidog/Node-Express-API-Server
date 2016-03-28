@@ -47,8 +47,9 @@ System.register(['angular2/core', 'angular2/common', '../services/UserService.se
                         return this.router.parent.navigate(['/Login']);
                     }
                 };
-                UserPage.prototype.deleteUser = function (userid) {
-                    console.log('user with id %s', userid);
+                UserPage.prototype.deleteUser = function (userId) {
+                    this._userService.deleteUser(userId)
+                        .subscribe(function (res) { console.log('hello'); });
                 };
                 UserPage = __decorate([
                     core_1.Component({

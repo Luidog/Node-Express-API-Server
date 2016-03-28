@@ -8,10 +8,10 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 // var Favorites = new Schema({ beachId: String })
 
 var Devices = new Schema({
-	deviceName: String,
-	deviceType: String,
-	deviceToken: String,
-	addedDate: {type: Date, default: Date.now}
+  deviceName: String,
+  deviceType: String,
+  deviceToken: String,
+  addedDate: {type: Date, default: Date.now}
 })
 
 var UserSchema = new Schema({
@@ -29,30 +29,6 @@ var UserSchema = new Schema({
   favorites: Array,
   devices: [Devices]
 });
-
-/**
- * Virtuals
- */
-
-// Public profile information
-UserSchema
-  .virtual('profile')
-  .get(function() {
-    return {
-      'name': this.name,
-      'role': this.role
-    };
-  });
-
-// Non-sensitive info we'll be putting in the token
-UserSchema
-  .virtual('token')
-  .get(function() {
-    return {
-      '_id': this._id,
-      'role': this.role
-    };
-  });
 
 /**
  * Validations

@@ -9,7 +9,6 @@ export class HeroService {
     baseurl: string
 
     constructor(public http: Http) {
-        console.log('Hero REST Service Created.', http)
         this.baseurl = 'http://localhost:3000/api/heroes/';
     }
 

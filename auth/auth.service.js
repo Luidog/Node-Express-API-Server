@@ -18,7 +18,6 @@ function isAuthenticated() {
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
-      console.log('validating request')// allow access_token to be passed through query parameter as well
         req.headers.authorization = req.get("authorization");
       validateJwt(req, res, next);
     })
@@ -27,15 +26,13 @@ function isAuthenticated() {
       User.findByIdAsync(req.user._id)
         .then(function(user) {
           if (!user) {
-           return res.status(401).end();
-          }
-          return req.user = user;  
-        })
+            return res.status(401).end();
+          } return req.user = user; })
         .catch(function(err) {
           return next(err);
         });
-    next()
-  });
+      next()
+    });
 }
 
 /**

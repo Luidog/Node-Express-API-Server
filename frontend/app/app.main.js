@@ -65,7 +65,7 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
                     core_1.Component({
                         selector: 'hero-app',
                         directives: [router_1.ROUTER_DIRECTIVES, LoginBar_component_1.LoginBar],
-                        template: "\n    <div class=\"container\">\n        <login-bar></login-bar>\n        <div class=\"content\">      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n            <div>\n                <div  class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>\n        </div>\n\n  "
+                        template: "\n    <div class=\"container\">\n   \n        <div class=\"content\">      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n             <login-bar></login-bar>\n            <div>\n                <div  class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>\n        </div>\n\n  "
                     }),
                     router_1.RouteConfig([
                         { path: '/Home', name: 'Home', component: Home_component_1.HomeComponent },
@@ -83,7 +83,8 @@ System.register(['angular2/platform/browser', 'angular2/core', './components/Her
                 return HeroApp;
             }());
             exports_1("HeroApp", HeroApp);
-            browser_1.bootstrap(HeroApp, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, core_1.provide(angular2_jwt_1.AuthHttp, { useFactory: function (http) {
+            browser_1.bootstrap(HeroApp, [http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS, core_1.provide(angular2_jwt_1.AuthHttp, {
+                    useFactory: function (http) {
                         return new angular2_jwt_1.AuthHttp(new angular2_jwt_1.AuthConfig({
                             tokenName: 'RestServerWebToken'
                         }), http);

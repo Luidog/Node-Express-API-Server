@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
-import { HeroService } from '../services/HeroService.service';
 import {Router, RouteParams} from 'angular2/router';
 import { Hero } from '../datatypes/hero.datatype';
+import { HeroService } from '../services/HeroService.service'
 
 @Component({
 	selector: 'hero-list',

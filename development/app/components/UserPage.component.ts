@@ -61,8 +61,9 @@ export class UserPage implements OnInit {
 		}
 	}
 
-	deleteUser(userid: string): void{
-		console.log('user with id %s', userid)
+	deleteUser(userId: string){
+		this._userService.deleteUser(userId)
+			.subscribe(res => {console.log('hello')})
 
 	}
 

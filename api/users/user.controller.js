@@ -102,14 +102,14 @@ exports.destroy = function(req, res) {
  * Adds Favorites to  a user
  */
 exports.addFavorite = function(req, res) {
+  console.log('adding favorite')
 	let userId = req.body.userId;
   let userName = req.body.userName;
   let heroId = req.body.heroId; 
 	User.findByIdAndUpdateAsync( userId, {$addToSet: { favorites: heroId } }, {safe: true, upsert: true})
-    .then(function(){console.log('user updated')})
   Hero.findByIdAndUpdateAsync(heroId, {$addToSet: { fans: [{ userName: userName, userId: userId }]}})
       .then(_responseWithResult(res))
-      .catch(console.log(res))
+      .catch(function(error){console.log(error)})
 };
 
 /**
@@ -118,7 +118,7 @@ exports.addFavorite = function(req, res) {
 exports.removeFavorite = function(req, res) {
 
 	User.findByIdAndUpdateAsync(req.body.userId,
-		{$pull: { favorites: req.body.beachId }},
+		{$pull: { favorites: req.body.heroId }},
 		{safe: true },
 		function(err, model) {
 	   	 	if (err){
@@ -126,7 +126,7 @@ exports.removeFavorite = function(req, res) {
 	    	} else if (model){
 				console.log(model)
 	    	}
-	    console.log(req.body.beachId)
+	    console.log(req.body.heroId)
 	res.status(204).end();
     })
 };

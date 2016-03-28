@@ -1,5 +1,5 @@
 import { Component, OnInit } from 'angular2/core';
-import { ROUTER_DIRECTIVES } from 'angular2/router';
+import { ROUTER_DIRECTIVES, Router } from 'angular2/router';
 import { NgClass } from 'angular2/common';
 import { UserService } from '../services/UserService.service'
 
@@ -9,12 +9,12 @@ import { UserService } from '../services/UserService.service'
 	providers: [UserService],
 	template: `
 		<div class="menu-wrap">
-		<button [ngClass]="{hidden: isOn }" (click)="toggleState(isOn)" id="open-button"><span>Open Menu</span></button>
-				<nav [ngClass]="{hidden: !isOn, navbar: isOn}" class="menu">
-					<a class="link-list" [routerLink]="['/Login']">Login</a>
-					<a class="link-list" [routerLink]="['/SignUp']">Sign Up</a>
-					<a class="link-list" [routerLink]="['/UserPage']">User Page</a>
-					<a class="link-list" (click)="logout()">Logout</a>
+		<button class="circular ui icon button" (click)="toggleState(isOn)" id="open-button"><span>Show Login Menu</span></button>
+				<nav  class="ui four item menu" [ngClass]="{hidden: !isOn, navbar: isOn}">
+					<a class="item" [routerLink]="['/Login']">Login</a>
+					<a class="item" [routerLink]="['/SignUp']">Sign Up</a>
+					<a class="item" [routerLink]="['/UserPage']">User Page</a>
+					<a class="item" (click)="logout()">Logout</a>
 				</nav>
 		</div>
 	`,
@@ -46,11 +46,14 @@ export class LoginBar{
 	isOn = false;
 	isDisabled = false;
 
-	constructor(private _userService: UserService) {
+	constructor(private _userService: UserService, public router: Router) {
 	}
 
 	logout(){
-		this._userService.logout()
+		let loggedOut = this._userService.logOut()
+		if (loggedOut){
+		//return this.router.parent.navigate(['/Home']);
+		}
 	}
 
 	toggleState(State) {

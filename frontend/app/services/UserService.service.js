@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'rxjs/Rx'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', 'rxjs'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, angular2_jwt_1, headers_1;
+    var http_1, core_1, angular2_jwt_1, headers_1, router_1, rxjs_1;
     var UserService;
     return {
         setters:[
@@ -26,31 +26,71 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
             function (headers_1_1) {
                 headers_1 = headers_1_1;
             },
-            function (_1) {}],
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (rxjs_1_1) {
+                rxjs_1 = rxjs_1_1;
+            }],
         execute: function() {
             UserService = (function () {
-                function UserService(http, _authHttp, _jwtHelper) {
+                function UserService(http, _authHttp, _jwtHelper, router) {
                     this.http = http;
                     this._authHttp = _authHttp;
                     this._jwtHelper = _jwtHelper;
+                    this.router = router;
+                    this.currentUser = new rxjs_1.BehaviorSubject(null);
                     console.log('User Service Created.', http);
                     this.baseURL = 'http://localhost:3000/';
                     this.authURL = 'auth/local';
                     this.apiURL = 'api/users/';
+                    this.token = 'RestServerWebToken';
                 }
+                UserService.prototype.login = function (email, password) {
+                    var body = JSON.stringify({ email: email, password: password });
+                    return this.http.post(this.baseURL + this.authURL, body, { headers: headers_1.contentHeaders })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (response) { console.log(response); localStorage.setItem('RestServerWebToken', response.token); }, function (error) { alert(error.text()); });
+                };
+                UserService.prototype.setCurrentUser = function (newUser) {
+                    this.currentUser.next(newUser);
+                };
+                UserService.prototype.logOut = function () {
+                    localStorage.removeItem(this.token);
+                    return true;
+                };
+                UserService.prototype.isLoggedIn = function () {
+                    var token = this._getToken(this.token);
+                    console.log(!this._jwtHelper.isTokenExpired(token));
+                    return !this._jwtHelper.isTokenExpired(token);
+                };
                 UserService.prototype.getUserInfo = function () {
-                    return this._authHttp.get(this.baseURL + this.apiURL + '/me', { headers: headers_1.contentHeaders })
+                    return this._authHttp.get(this.baseURL + this.apiURL + 'me', { headers: headers_1.contentHeaders })
                         .map(function (res) { return res.json(); });
+                };
+                UserService.prototype.addFavorite = function (heroId) {
+                    var userName = this.getUserName();
+                    var userId = this._getIdFromToken();
+                    var body = { 'userId': userId, 'heroId': heroId, 'username': userName };
+                    console.log(body);
+                    var newRequest = this._toURLEncodedString(body);
+                    console.log(newRequest);
+                    console.log(this.baseURL + this.apiURL + 'addfavorite');
+                    var specialHeaders = new http_1.Headers();
+                    specialHeaders.append('Accept', 'application/json');
+                    specialHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+                    return this._authHttp.post(this.baseURL + this.apiURL + 'addfavorite', newRequest, { headers: specialHeaders })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (res) {
+                        console.log(res);
+                    });
                 };
                 UserService.prototype.getUsers = function () {
                     return this._authHttp.get(this.baseURL + this.apiURL, { headers: headers_1.contentHeaders })
                         .map(function (res) { return res.json(); });
                 };
-                UserService.prototype.login = function (email, password) {
-                    var body = JSON.stringify({ email: email, password: password });
-                    return this.http.post(this.baseURL + this.authURL, body, { headers: headers_1.contentHeaders })
-                        .map(function (res) { return res.json().token; })
-                        .subscribe(function (response) { localStorage.setItem('RestServerWebToken', response); }, function (error) { alert(error.text()); });
+                UserService.prototype.deleteUser = function (userId) {
+                    return this._authHttp.delete(this.baseURL + this.apiURL + userId, { headers: headers_1.contentHeaders });
                 };
                 UserService.prototype.signUp = function (firstname, lastname, username, email, password) {
                     var body = { 'firstName': firstname, 'lastName': lastname, 'username': username, 'email': email, 'password': password };
@@ -72,18 +112,32 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     }
                     return parts.join("&");
                 };
-                UserService.prototype.tokenstuff = function () {
-                    var decodedToken = this._jwtHelper.decodeToken(this.token);
-                    var tokenExpired = this._jwtHelper.isTokenExpired(this.token);
-                    console.log(decodedToken);
-                };
-                UserService.prototype.idFromToken = function (token) {
-                    var decodedToken = this._jwtHelper.decodeToken(this.token);
+                UserService.prototype._getIdFromToken = function () {
+                    var token = this._getToken(this.token);
+                    var decodedToken = this._jwtHelper.decodeToken(token);
+                    console.log(decodedToken._id);
                     return decodedToken._id;
+                };
+                UserService.prototype.getUserName = function () {
+                    var token = this._getToken(this.token);
+                    var decodedToken = this._jwtHelper.decodeToken(token);
+                    console.log(decodedToken.user);
+                    return decodedToken.userName;
+                };
+                UserService.prototype._getToken = function (tokenName) {
+                    var token = localStorage.getItem(tokenName);
+                    var decodedToken = this._jwtHelper.decodeToken(token);
+                    console.log(decodedToken);
+                    if (token) {
+                        return token;
+                    }
+                    else {
+                        return "No Token Found";
+                    }
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http, angular2_jwt_1.AuthHttp, angular2_jwt_1.JwtHelper])
+                    __metadata('design:paramtypes', [http_1.Http, angular2_jwt_1.AuthHttp, angular2_jwt_1.JwtHelper, router_1.Router])
                 ], UserService);
                 return UserService;
             }());

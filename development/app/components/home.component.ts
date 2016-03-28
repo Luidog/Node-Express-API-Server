@@ -1,15 +1,14 @@
 import { Component } from 'angular2/core'
 import {CORE_DIRECTIVES} from 'angular2/common'
-import { JwtHelper } from '../services/angular2-jwt'
-import { Renderer } from 'angular2/core'
+import { UserService } from '../services/UserService.service'
 
 @Component({
 	selector: 'home-page',
 	directives: [CORE_DIRECTIVES],
-	providers: [JwtHelper, Renderer],
+	providers: [UserService],
 	template: `
 		<div style="padding-top: 30px">
-		    <div class="ui raised segment" *ngIf="!tokenExpired">
+		    <div class="ui raised segment" *ngIf="isLoggedIn">
     			<h3>You are logged in as:</h3>
     			<p>{{username}}</p>
     		</div>
@@ -27,16 +26,12 @@ import { Renderer } from 'angular2/core'
 })
 
 export class HomeComponent{
-	token: string;
-	tokenExpired: boolean;
 	username: string
+	isLoggedIn: boolean;
 
-	constructor(private _jwtHelper: JwtHelper, private _renderer: Renderer){
-	//	this._renderer.setElementClass('div','blue', true)
-	//	this.token = localStorage.getItem('RestServerWebToken');
-	//	let decodedToken = this._jwtHelper.decodeToken(this.token);
-	//	this.tokenExpired = this._jwtHelper.isTokenExpired(this.token);
-	//	this.username = decodedToken.userName;
+	constructor(private _userService: UserService){
+		//this.username = this._userService.getUserName()
+		//this.isLoggedIn = this._userService.isLoggedIn()
 
 	}
 }
