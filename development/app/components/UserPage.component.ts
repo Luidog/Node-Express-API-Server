@@ -1,5 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
+import { User } from '../datatypes/user.datatype'
 import { UserService } from '../services/UserService.service';
 import {Router, RouteParams, CanActivate} from 'angular2/router';
 import {tokenNotExpired} from '../services/angular2-jwt';
@@ -21,11 +22,11 @@ import {tokenNotExpired} from '../services/angular2-jwt';
 			 	<div class="description">
 			 		<p> Role: {{ user?.role }} </p>
 			 	</div>
-			 	<div  class="content" *ngFor="#user of users">
+			 	<div  class="content" *ngFor="#user of users; #i = index">
 					<div style="border: 2px solid grey; border-radius:5px; margin:5px !important;" class="item" *ngIf="user.role != 'admin'">
 						<div class="content">
-						<button (click)="deleteUser(user._id)">Delete user</button>
-			 				<h1> {{user?.username }}  || {{ user?.firstName }} {{ user?.lastName }}</h1>
+						<button (click)="deleteUser(user.id, i)">Delete user</button>
+			 				<h1>{{i}} {{user?.username }} || {{ user?.firstName }} {{ user?.lastName }}</h1>
 			 				<h2> {{user?.email }} </h2>
 			 			<button (click)="makeAdmin()">make Admin</button>
 			 			</div>
@@ -41,8 +42,8 @@ import {tokenNotExpired} from '../services/angular2-jwt';
 })
 	
 export class UserPage implements OnInit {
-	user: any;
-	users: any;
+	user: User;
+	users: User[];
 
 	constructor(private _userService: UserService, public router: Router) {
 	}
@@ -61,10 +62,10 @@ export class UserPage implements OnInit {
 		}
 	}
 
-	deleteUser(userId: string){
+	deleteUser(userId: string, index: number){
 		this._userService.deleteUser(userId)
-			.subscribe(res => {console.log('hello')})
-
+			.subscribe(res => { console.log(res); })
+		if (index > -1) { this.users.splice(index) } 
 	}
 
 

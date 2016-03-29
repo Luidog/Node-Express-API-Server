@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
     }
 
     var token = auth.signToken(user._id, user.username, user.role);
-    res.json({  firstName: user.firstName, lastName: user.lastName,username: user.username, email: user.email, token: token });
+    res.json({  firstName: user.firstName, lastName: user.lastName,username: user.username, id: user._id, email: user.email, token: token });
   })(req, res, next)
 });
 

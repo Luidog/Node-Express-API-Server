@@ -1,5 +1,4 @@
 import { Http, Headers, Response } from 'angular2/http';
-import { UserService } from './services/UserService.service';
 import { Injectable } from 'angular2/core';
 import { AuthHttp, JwtHelper } from './angular2-jwt'; 
 import { contentHeaders } from '../common/headers';
@@ -76,7 +75,18 @@ export class UserService{
 
     getUsers() {
 		return this._authHttp.get(this.baseURL + this.apiURL, { headers: contentHeaders })
-			.map(res => res.json())
+			.map(res =>  res.json())
+			.map((users: Array<any>) => {
+                let result: Array<User> = [];
+                if (users) {
+                    users.forEach((user) => {
+                        result.push(
+							new User(user));
+                    });
+                }
+                console.log(result)
+                return result;
+            });
    	}
 
     deleteUser(userId) {

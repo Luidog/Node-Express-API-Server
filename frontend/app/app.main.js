@@ -70,7 +70,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
                     core_1.Component({
                         selector: 'hero-app',
                         directives: [router_1.ROUTER_DIRECTIVES, LoginBar_component_1.LoginBar],
-                        template: "\n    <div class=\"container\">\n   \n        <div class=\"content\">      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n             <login-bar></login-bar>\n            <div>\n                <div  class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>\n        </div>\n\n  "
+                        template: "\n    <div class=\"container\">\n        <login-bar></login-bar>   \n        <div class=\"content\">      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n\n            <div>\n                <div  class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>\n        </div>\n\n  "
                     }),
                     router_1.RouteConfig([
                         { path: '/Home', name: 'Home', component: Home_component_1.HomeComponent },

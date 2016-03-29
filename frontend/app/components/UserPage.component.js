@@ -47,16 +47,19 @@ System.register(['angular2/core', 'angular2/common', '../services/UserService.se
                         return this.router.parent.navigate(['/Login']);
                     }
                 };
-                UserPage.prototype.deleteUser = function (userId) {
+                UserPage.prototype.deleteUser = function (userId, index) {
                     this._userService.deleteUser(userId)
-                        .subscribe(function (res) { console.log('hello'); });
+                        .subscribe(function (res) { console.log(res); });
+                    if (index > -1) {
+                        this.users.splice(index);
+                    }
                 };
                 UserPage = __decorate([
                     core_1.Component({
                         selector: 'user-page',
                         providers: [UserService_service_1.UserService],
                         directives: [common_1.CORE_DIRECTIVES],
-                        template: "\n\t<div class=\"ui divided list\">\n\t\t<h1>User</h1>\n\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\">\n\t\t\t<div  class=\"item\">\n\t\t\t\t<div class=\"content\">\n\t\t\t \t<h1> {{user?.username}}  || {{ user?.firstName }} {{ user?.lastName}}</h1>\n\t\t\t \t<h2>{{user?.email }}</h2>\n\t\t\t \t</div>\n\t\t\t \t<div class=\"description\">\n\t\t\t \t\t<p> Role: {{ user?.role }} </p>\n\t\t\t \t</div>\n\t\t\t \t<div  class=\"content\" *ngFor=\"#user of users\">\n\t\t\t\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"item\" *ngIf=\"user.role != 'admin'\">\n\t\t\t\t\t\t<div class=\"content\">\n\t\t\t\t\t\t<button (click)=\"deleteUser(user._id)\">Delete user</button>\n\t\t\t \t\t\t\t<h1> {{user?.username }}  || {{ user?.firstName }} {{ user?.lastName }}</h1>\n\t\t\t \t\t\t\t<h2> {{user?.email }} </h2>\n\t\t\t \t\t\t<button (click)=\"makeAdmin()\">make Admin</button>\n\t\t\t \t\t\t</div>\n\t\t\t \t\t<div class=\"description\">\n\t\t\t \t\t\t<p> Role: {{ user?.role }} </p>\n\t\t\t \t\t</div>\n\t\t\t \t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t"
+                        template: "\n\t<div class=\"ui divided list\">\n\t\t<h1>User</h1>\n\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"content\">\n\t\t\t<div  class=\"item\">\n\t\t\t\t<div class=\"content\">\n\t\t\t \t<h1> {{user?.username}}  || {{ user?.firstName }} {{ user?.lastName}}</h1>\n\t\t\t \t<h2>{{user?.email }}</h2>\n\t\t\t \t</div>\n\t\t\t \t<div class=\"description\">\n\t\t\t \t\t<p> Role: {{ user?.role }} </p>\n\t\t\t \t</div>\n\t\t\t \t<div  class=\"content\" *ngFor=\"#user of users; #i = index\">\n\t\t\t\t\t<div style=\"border: 2px solid grey; border-radius:5px; margin:5px !important;\" class=\"item\" *ngIf=\"user.role != 'admin'\">\n\t\t\t\t\t\t<div class=\"content\">\n\t\t\t\t\t\t<button (click)=\"deleteUser(user.id, i)\">Delete user</button>\n\t\t\t \t\t\t\t<h1>{{i}} {{user?.username }} || {{ user?.firstName }} {{ user?.lastName }}</h1>\n\t\t\t \t\t\t\t<h2> {{user?.email }} </h2>\n\t\t\t \t\t\t<button (click)=\"makeAdmin()\">make Admin</button>\n\t\t\t \t\t\t</div>\n\t\t\t \t\t<div class=\"description\">\n\t\t\t \t\t\t<p> Role: {{ user?.role }} </p>\n\t\t\t \t\t</div>\n\t\t\t \t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t</div>\n\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [UserService_service_1.UserService, router_1.Router])
                 ], UserPage);

@@ -26,14 +26,14 @@ import { AuthHttp, AuthConfig, JwtHelper } from './services/angular2-jwt';
     directives: [ROUTER_DIRECTIVES, LoginBar],
     template: `
     <div class="container">
-   
+        <login-bar></login-bar>   
         <div class="content">      
             <nav class="ui three item menu">
                 <a class="item" [routerLink]="['/Home']">Home</a>
                 <a class="item" [routerLink]="['/Heroes']">Hero List</a>
                 <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
             </nav>
-             <login-bar></login-bar>
+
             <div>
                 <div  class="ui three column centered grid">
                     <router-outlet></router-outlet>

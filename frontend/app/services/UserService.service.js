@@ -92,7 +92,17 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                 };
                 UserService.prototype.getUsers = function () {
                     return this._authHttp.get(this.baseURL + this.apiURL, { headers: headers_1.contentHeaders })
-                        .map(function (res) { return res.json(); });
+                        .map(function (res) { return res.json(); })
+                        .map(function (users) {
+                        var result = [];
+                        if (users) {
+                            users.forEach(function (user) {
+                                result.push(new user_datatype_1.User(user));
+                            });
+                        }
+                        console.log(result);
+                        return result;
+                    });
                 };
                 UserService.prototype.deleteUser = function (userId) {
                     return this._authHttp.delete(this.baseURL + this.apiURL + userId, { headers: headers_1.contentHeaders });
