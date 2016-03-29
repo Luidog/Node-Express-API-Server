@@ -9,7 +9,6 @@ import { UserService } from '../services/UserService.service';
 @Component({
   selector: 'login',
   directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES],
-  providers: [UserService],
   template: `
   <div style="padding-top: 30px">
     <h1>Login</h1>

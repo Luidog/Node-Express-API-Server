@@ -1,4 +1,5 @@
 import { Http, Headers, Response } from 'angular2/http';
+import { UserService } from './services/UserService.service';
 import { Injectable } from 'angular2/core';
 import { AuthHttp, JwtHelper } from './angular2-jwt'; 
 import { contentHeaders } from '../common/headers';
@@ -14,9 +15,9 @@ export class UserService{
 	authURL: string;
 	apiURL: string;
 	token: string;
+	user: User;
 
 	constructor(public http: Http, private _authHttp: AuthHttp, private _jwtHelper: JwtHelper, public router: Router) {
-        console.log('User Service Created.', http)
         this.baseURL = 'http://localhost:3000/';
         this.authURL = 'auth/local'
         this.apiURL = 'api/users/'
@@ -29,11 +30,13 @@ export class UserService{
 		let body = JSON.stringify({ email, password });
 		return this.http.post(this.baseURL + this.authURL, body, { headers: contentHeaders })
 			.map(res => { return res.json() })
-			.subscribe(response => { console.log(response); localStorage.setItem('RestServerWebToken', response.token) }, error => { alert(error.text()); });
+			.subscribe(response => { this.setCurrentUser(response); localStorage.setItem('RestServerWebToken', response.token) }, error => { alert(error.text()); });
 	}
 
 	public setCurrentUser(newUser: User): void {
-		this.currentUser.next(newUser);
+		let nUser =  new User(newUser);
+		this.currentUser.next(nUser);
+		console.log('this fired')
 	}
 
     logOut(): boolean {

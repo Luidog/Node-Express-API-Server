@@ -1,15 +1,16 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit, ChangeDetectionStrategy } from 'angular2/core';
 import { ROUTER_DIRECTIVES, Router } from 'angular2/router';
 import { NgClass } from 'angular2/common';
-import { UserService } from '../services/UserService.service'
+import { UserService } from '../services/UserService.service';
+import {Observable} from 'rxjs';
+import { User } from '../datatypes/user.datatype'
 
 @Component({
 	selector: 'login-bar',
 	directives: [ROUTER_DIRECTIVES, NgClass],
-	providers: [UserService],
 	template: `
 		<div class="menu-wrap">
-		<button class="circular ui icon button" (click)="toggleState(isOn)" id="open-button"><span>Show Login Menu</span></button>
+		<button class="circular ui icon button" (click)="toggleState(isOn)" id="open-button"><span *ngIf='!currentUser'>Show Login Menu</span><span *ngIf='currentUser'>{{currentUser?.username}}</span></button>
 				<nav  class="ui four item menu" [ngClass]="{hidden: !isOn, navbar: isOn}">
 					<a class="item" [routerLink]="['/Login']">Login</a>
 					<a class="item" [routerLink]="['/SignUp']">Sign Up</a>
@@ -41,13 +42,18 @@ import { UserService } from '../services/UserService.service'
 	`]
 })
 
-export class LoginBar{
-
+export class LoginBar implements OnInit{
+	currentUser: User;
 	isOn = false;
 	isDisabled = false;
 
 	constructor(private _userService: UserService, public router: Router) {
+
+		
+
 	}
+	
+
 
 	logout(){
 		let loggedOut = this._userService.logOut()
@@ -59,5 +65,11 @@ export class LoginBar{
 	toggleState(State) {
 		let	newstate = !State
 		this.isOn = newstate
+	}
+
+	ngOnInit() {
+		this._userService.currentUser
+			.subscribe(res => { this.currentUser = res; console.log(res) })
+	
 	}
 }

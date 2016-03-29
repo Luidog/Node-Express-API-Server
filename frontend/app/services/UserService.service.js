@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', 'rxjs/subject/BehaviorSubject'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', '../datatypes/user.datatype', 'rxjs/subject/BehaviorSubject'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, angular2_jwt_1, headers_1, router_1, BehaviorSubject_1;
+    var http_1, core_1, angular2_jwt_1, headers_1, router_1, user_datatype_1, BehaviorSubject_1;
     var UserService;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (user_datatype_1_1) {
+                user_datatype_1 = user_datatype_1_1;
+            },
             function (BehaviorSubject_1_1) {
                 BehaviorSubject_1 = BehaviorSubject_1_1;
             }],
@@ -40,20 +43,22 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     this._jwtHelper = _jwtHelper;
                     this.router = router;
                     this.currentUser = new BehaviorSubject_1.BehaviorSubject(null);
-                    console.log('User Service Created.', http);
                     this.baseURL = 'http://localhost:3000/';
                     this.authURL = 'auth/local';
                     this.apiURL = 'api/users/';
                     this.token = 'RestServerWebToken';
                 }
                 UserService.prototype.login = function (email, password) {
+                    var _this = this;
                     var body = JSON.stringify({ email: email, password: password });
                     return this.http.post(this.baseURL + this.authURL, body, { headers: headers_1.contentHeaders })
                         .map(function (res) { return res.json(); })
-                        .subscribe(function (response) { console.log(response); localStorage.setItem('RestServerWebToken', response.token); }, function (error) { alert(error.text()); });
+                        .subscribe(function (response) { _this.setCurrentUser(response); localStorage.setItem('RestServerWebToken', response.token); }, function (error) { alert(error.text()); });
                 };
                 UserService.prototype.setCurrentUser = function (newUser) {
-                    this.currentUser.next(newUser);
+                    var nUser = new user_datatype_1.User(newUser);
+                    this.currentUser.next(nUser);
+                    console.log('this fired');
                 };
                 UserService.prototype.logOut = function () {
                     localStorage.removeItem(this.token);

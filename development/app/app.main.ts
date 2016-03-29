@@ -58,12 +58,12 @@ import { AuthHttp, AuthConfig, JwtHelper } from './services/angular2-jwt';
 export class HeroApp {
 
 
-    constructor() {
+    constructor(public userService: UserService) {
     }
 
 }
 
-bootstrap(HeroApp, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(AuthHttp, {
+bootstrap(HeroApp, [HTTP_PROVIDERS, UserService, ROUTER_PROVIDERS, provide(AuthHttp, {
     useFactory: (http) => {
         return new AuthHttp(new AuthConfig({
             tokenName: 'RestServerWebToken'

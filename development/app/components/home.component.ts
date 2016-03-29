@@ -5,7 +5,6 @@ import { UserService } from '../services/UserService.service'
 @Component({
 	selector: 'home-page',
 	directives: [CORE_DIRECTIVES],
-	providers: [UserService],
 	template: `
 		<div style="padding-top: 30px">
 		    <div class="ui raised segment" *ngIf="isLoggedIn">
@@ -18,7 +17,6 @@ import { UserService } from '../services/UserService.service'
     	</div>
     	<div>
     		<div>
-
     			<h1>A Hero REST Server designed by <a href="https://github.com/Luidog"> Lui de la Parra </a></h1>
     		</div>
 		</div>

@@ -45,7 +45,6 @@ System.register(['angular2/core', 'angular2/router', 'angular2/common', '../serv
                     core_1.Component({
                         selector: 'login',
                         directives: [router_1.RouterLink, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
-                        providers: [UserService_service_1.UserService],
                         template: "\n  <div style=\"padding-top: 30px\">\n    <h1>Login</h1>\n    <div style=\"width: 500px\">\n      <form class=\"ui form\" role=\"form\">\n        <div style=\"padding-bottom: 10px\">\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"username\">Username</label>\n            <input type=\"text\" #username  id=\"username\" placeholder=\"Username\">\n          </div>\n          <div style=\"width: 500px\" class=\"field ui input\">\n            <label for=\"password\">Password</label>\n            <input type=\"password\" #password class=\"form-control\" id=\"password\" placeholder=\"Password\">\n          </div>\n        <button type=\"submit\" (click)=\"login($event, username.value, password.value)\" class=\"ui button active\">Submit</button>\n        <button [routerLink]=\"['/SignUp']\" class=\"ui button\">Sign Up</button>\n        </div>\n      </form>\n    </div>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, UserService_service_1.UserService])
