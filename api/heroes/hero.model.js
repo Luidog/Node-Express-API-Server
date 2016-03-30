@@ -48,7 +48,7 @@ var SuperPowers = new Schema({
 
 var FansSchema = new Schema({
 	userId: {type: String, required: true},
-	userName: {type: String, required: true} ,
+	username: {type: String, required: true} ,
 	fanSince: {type: Date, default: Date.now} 
 })
 

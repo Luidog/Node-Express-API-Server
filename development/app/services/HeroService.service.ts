@@ -33,13 +33,8 @@ export class HeroService {
                 if (heroes){
                     heroes.forEach((hero) => {
                         result.push(
-                                new Hero( 
-                                        hero.firstName,
-                                        hero.lastName,
-                                        hero.heroName,
-                                        hero._id,
-                                        hero.powers
-                                    ));
+                                new Hero(hero)
+                                );
                     });
                 }
                 return result;

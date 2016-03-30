@@ -6,12 +6,13 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             Hero = (function () {
-                function Hero(firstName, lastName, heroName, _id, powers) {
-                    this.firstName = firstName;
-                    this.lastName = lastName;
-                    this.heroName = heroName;
-                    this._id = _id;
-                    this.powers = powers;
+                function Hero(obj) {
+                    this.firstName = obj && obj.firstName || null;
+                    this.lastName = obj && obj.lastName || null;
+                    this.heroName = obj && obj.heroName || null;
+                    this.id = obj && obj._id || null;
+                    this.powers = obj && obj.powers || null;
+                    console.log("Hero Created for %s %s || Heroname: %s. - ID: %s", this.firstName, this.lastName, this.heroName, this.id);
                 }
                 return Hero;
             }());

@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
 	head
 		link(rel='stylesheet', type="text/css", href='/frontend/styles/semantic.min.css')
+		link(rel='stylesheet', type="text/css", href='/frontend/styles/app.css')
 		script(src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js")
 		script(src="https://code.angularjs.org/tools/typescript.js")
 		script(src="https://code.angularjs.org/tools/system.js")
@@ -10,6 +11,7 @@ html(lang="en")
 		script(src="https://code.angularjs.org/2.0.0-beta.8/http.js")
 		script(src="https://code.angularjs.org/2.0.0-beta.8/angular2.js")
 		script( src="https://code.angularjs.org/2.0.0-beta.8/router.js")
+		script( src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.js")  
 		script(type='text/javascript').
 			System.config({
 			//map tells the System loader where to look for things
@@ -27,6 +29,6 @@ html(lang="en")
 			System.import('app')
 				    .catch(console.error.bind(console));
 		title REST Server Frontend
-	body(style={padding: '50px'})
+	body(style={padding: '50px', height: '100%, overflow: hidden'})
 		div
 			hero-app Loading....

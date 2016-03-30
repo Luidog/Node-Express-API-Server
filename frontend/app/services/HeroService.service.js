@@ -48,7 +48,7 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/Rx', '../datatypes/hero
                         var result = [];
                         if (heroes) {
                             heroes.forEach(function (hero) {
-                                result.push(new hero_datatype_1.Hero(hero.firstName, hero.lastName, hero.heroName, hero._id, hero.powers));
+                                result.push(new hero_datatype_1.Hero(hero));
                             });
                         }
                         return result;

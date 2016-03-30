@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers', 'angular2/router', '../datatypes/user.datatype', 'rxjs/subject/BehaviorSubject'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/headers.common', 'angular2/router', '../datatypes/user.datatype', 'rxjs/subject/BehaviorSubject'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, angular2_jwt_1, headers_1, router_1, user_datatype_1, BehaviorSubject_1;
+    var http_1, core_1, angular2_jwt_1, headers_common_1, router_1, user_datatype_1, BehaviorSubject_1;
     var UserService;
     return {
         setters:[
@@ -23,8 +23,8 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
             function (angular2_jwt_1_1) {
                 angular2_jwt_1 = angular2_jwt_1_1;
             },
-            function (headers_1_1) {
-                headers_1 = headers_1_1;
+            function (headers_common_1_1) {
+                headers_common_1 = headers_common_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -51,7 +51,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                 UserService.prototype.login = function (email, password) {
                     var _this = this;
                     var body = JSON.stringify({ email: email, password: password });
-                    return this.http.post(this.baseURL + this.authURL, body, { headers: headers_1.contentHeaders })
+                    return this.http.post(this.baseURL + this.authURL, body, { headers: headers_common_1.contentHeaders })
                         .map(function (res) { return res.json(); })
                         .subscribe(function (response) { _this.setCurrentUser(response); localStorage.setItem('RestServerWebToken', response.token); }, function (error) { alert(error.text()); });
                 };
@@ -70,13 +70,13 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     return !this._jwtHelper.isTokenExpired(token);
                 };
                 UserService.prototype.getUserInfo = function () {
-                    return this._authHttp.get(this.baseURL + this.apiURL + 'me', { headers: headers_1.contentHeaders })
+                    return this._authHttp.get(this.baseURL + this.apiURL + 'me', { headers: headers_common_1.contentHeaders })
                         .map(function (res) { return res.json(); });
                 };
                 UserService.prototype.addFavorite = function (heroId) {
-                    var userName = this.getUserName();
+                    var username = this.getUsername();
                     var userId = this._getIdFromToken();
-                    var body = { 'userId': userId, 'heroId': heroId, 'username': userName };
+                    var body = { 'userId': userId, 'heroId': heroId, 'username': username };
                     console.log(body);
                     var newRequest = this._toURLEncodedString(body);
                     console.log(newRequest);
@@ -91,7 +91,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     });
                 };
                 UserService.prototype.getUsers = function () {
-                    return this._authHttp.get(this.baseURL + this.apiURL, { headers: headers_1.contentHeaders })
+                    return this._authHttp.get(this.baseURL + this.apiURL, { headers: headers_common_1.contentHeaders })
                         .map(function (res) { return res.json(); })
                         .map(function (users) {
                         var result = [];
@@ -105,7 +105,7 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                     });
                 };
                 UserService.prototype.deleteUser = function (userId) {
-                    return this._authHttp.delete(this.baseURL + this.apiURL + userId, { headers: headers_1.contentHeaders });
+                    return this._authHttp.delete(this.baseURL + this.apiURL + userId, { headers: headers_common_1.contentHeaders });
                 };
                 UserService.prototype.signUp = function (firstname, lastname, username, email, password) {
                     var body = { 'firstName': firstname, 'lastName': lastname, 'username': username, 'email': email, 'password': password };

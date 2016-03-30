@@ -11,7 +11,7 @@ import { User } from '../datatypes/user.datatype'
 	template: `
 		<div class="menu-wrap">
 		<button class="circular ui icon button" (click)="toggleState(isOn)" id="open-button"><span *ngIf='!currentUser'>Show Login Menu</span><span *ngIf='currentUser'>{{currentUser?.username}}</span></button>
-				<nav  class="ui four item menu" [ngClass]="{hidden: !isOn, navbar: isOn}">
+				<nav  class="ui four square item menu" [ngClass]="{newSquare: isOn, cmenuslidebottom: !isOn, isactive: isOn}">
 					<a class="item" [routerLink]="['/Login']">Login</a>
 					<a class="item" [routerLink]="['/SignUp']">Sign Up</a>
 					<a class="item" [routerLink]="['/UserPage']">User Page</a>
@@ -23,12 +23,39 @@ import { User } from '../datatypes/user.datatype'
 	.hidden{
 		display: none;
 	}
+	.square{
+		height:0px;
+		background-color: #29A2FA;
+		-webkit-transition-duration: 1s;
+	}
+	.newSquare{
+		height:20px;
+		-webkit-transition-duration: 1s;
+		-webkit-transform: translateY(-20px);
+	}
 	.nav li ul {
     position:absolute;
     left:0;
     top:36px;
     z-index:1;
 	}
+	.cmenuslidebottom,
+	.cmenupushbottom {
+ 		bottom: 50;
+  		left: 0;
+  		-webkit-transform: translateY(60px);
+  		transition-duration: 1s;
+  		-webkit-transition-duration: 1s;
+      	-ms-transform: translateY(60px);
+         transform: translateY(60px);
+}
+
+.c-menuslide-bottom.isactive,
+.c-menu--push-bottom.is-active {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
 	.navbar{
    	 	overflow:hidden;
     	-webkit-transition:height 200ms ease-in;

@@ -76,6 +76,7 @@ gulp.task("watch", function(){
 	logger.info("Watching for file changes.")
 	gulp.watch('./development/templates/*.jade', ["compile-jade"])
 	gulp.watch('./development/app/components/*.*.*', ["transpile-typescript"])
+		gulp.watch('./development/app/directives/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/app/services/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/app/datatypes/*.*.*', ["transpile-typescript"])
 	gulp.watch('./development/app/*.*.*', ["transpile-typescript"])

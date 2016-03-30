@@ -1,5 +1,5 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
-/// <reference path="../../configuration/es6-shim.d.ts" />
+
 
 /*
  * Angular
@@ -20,28 +20,46 @@ import { UserPage } from './components/UserPage.component'
 import { HTTP_PROVIDERS, Http } from 'angular2/http';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, HashLocationStrategy, LocationStrategy, } from 'angular2/router';
 import { AuthHttp, AuthConfig, JwtHelper } from './services/angular2-jwt';
+import { aConfig } from './common/AuthConfig.common';
+import {enableProdMode} from 'angular2/core';
+enableProdMode();
 
 @Component({
     selector: 'hero-app',
     directives: [ROUTER_DIRECTIVES, LoginBar],
     template: `
-    <div class="container">
-        <login-bar></login-bar>   
-        <div class="content">      
+    <div class="inner">  
+        <div>      
             <nav class="ui three item menu">
                 <a class="item" [routerLink]="['/Home']">Home</a>
                 <a class="item" [routerLink]="['/Heroes']">Hero List</a>
                 <a class="item" [routerLink]="['/AddAHero']">Add A Hero</a>
             </nav>
-
             <div>
-                <div  class="ui three column centered grid">
+                <div class="ui three column centered grid">
                     <router-outlet></router-outlet>
                 </div>
-            </div>
+            </div>           
         </div>
+    </div>
+    <div class="outer">
+        <login-bar></login-bar> 
+    </div>
 
-  `
+  `,
+  styles: [`
+    .outer {
+                overflow: hidden;
+       position: relative;
+    }
+
+    .inner {
+        position: relative;
+        height: 100%;
+        width: 100%;
+
+    }
+  `]
 })
 
 @RouteConfig([

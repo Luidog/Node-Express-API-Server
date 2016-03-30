@@ -1,7 +1,7 @@
 import { Http, Headers, Response } from 'angular2/http';
 import { Injectable } from 'angular2/core';
 import { AuthHttp, JwtHelper } from './angular2-jwt'; 
-import { contentHeaders } from '../common/headers';
+import { contentHeaders } from '../common/headers.common';
 import { Router } from 'angular2/router'
 import { User } from '../datatypes/user.datatype'
 import { Subject } from 'rxjs/Subject'
@@ -56,9 +56,9 @@ export class UserService{
     }
 
     addFavorite(heroId: string){
-		let userName = this.getUserName();
+		let username = this.getUsername();
 		let userId = this._getIdFromToken();
-		let body = { 'userId': userId, 'heroId': heroId, 'username': userName };
+		let body = { 'userId': userId, 'heroId': heroId, 'username': username };
 		console.log(body);
 		let newRequest: string = this._toURLEncodedString(body);
 		console.log(newRequest);

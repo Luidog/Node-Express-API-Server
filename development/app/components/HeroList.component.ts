@@ -15,12 +15,12 @@ import { HeroService } from '../services/HeroService.service'
 	<div class="ui divided list">
 		<h1>Hero List</h1>
 		<div style="border: 2px solid grey; border-radius:5px; margin:5px !important;" class="content" *ngFor="#hero of heroes">
-			<div  class="item" (click)="selectedHero(hero._id)">
+			<div  class="item" (click)="selectedHero(hero.id)">
 				<div class="content">
 			 	<h1> {{hero.heroName}}  || {{ hero.firstName }} {{ hero.lastName}}</h1>
 			 	</div>
 			 	<div class="description">
-			 	ID: {{ hero._id }}
+			 	ID: {{ hero.id }}
 			 	</div>
 			 </div>
 		</div>

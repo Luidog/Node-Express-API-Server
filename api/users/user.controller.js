@@ -104,10 +104,10 @@ exports.destroy = function(req, res) {
 exports.addFavorite = function(req, res) {
   console.log('adding favorite')
 	let userId = req.body.userId;
-  let userName = req.body.userName;
+  let userName = req.body.username;
   let heroId = req.body.heroId; 
 	User.findByIdAndUpdateAsync( userId, {$addToSet: { favorites: heroId } }, {safe: true, upsert: true})
-  Hero.findByIdAndUpdateAsync(heroId, {$addToSet: { fans: [{ userName: userName, userId: userId }]}})
+  Hero.findByIdAndUpdateAsync(heroId, {$addToSet: { fans: [{ username: username, userId: userId }]}})
       .then(_responseWithResult(res))
       .catch(function(error){console.log(error)})
 };

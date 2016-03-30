@@ -1,5 +1,4 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
-/// <reference path="../../configuration/es6-shim.d.ts" />
 System.register(['./services/UserService.service', 'angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/Home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', './components/UserPage.component', 'angular2/http', 'angular2/router', './services/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
@@ -12,7 +11,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var UserService_service_1, browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, Home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, UserPage_component_1, http_1, router_1, angular2_jwt_1;
+    var UserService_service_1, browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, Home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, UserPage_component_1, http_1, router_1, angular2_jwt_1, core_2;
     var HeroApp;
     return {
         setters:[
@@ -24,6 +23,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
             },
             function (core_1_1) {
                 core_1 = core_1_1;
+                core_2 = core_1_1;
             },
             function (HeroForm_component_1_1) {
                 HeroForm_component_1 = HeroForm_component_1_1;
@@ -62,6 +62,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
                 angular2_jwt_1 = angular2_jwt_1_1;
             }],
         execute: function() {
+            core_2.enableProdMode();
             HeroApp = (function () {
                 function HeroApp(userService) {
                     this.userService = userService;
@@ -70,7 +71,8 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
                     core_1.Component({
                         selector: 'hero-app',
                         directives: [router_1.ROUTER_DIRECTIVES, LoginBar_component_1.LoginBar],
-                        template: "\n    <div class=\"container\">\n        <login-bar></login-bar>   \n        <div class=\"content\">      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n\n            <div>\n                <div  class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>\n        </div>\n\n  "
+                        template: "\n    <div class=\"inner\">  \n        <div>      \n            <nav class=\"ui three item menu\">\n                <a class=\"item\" [routerLink]=\"['/Home']\">Home</a>\n                <a class=\"item\" [routerLink]=\"['/Heroes']\">Hero List</a>\n                <a class=\"item\" [routerLink]=\"['/AddAHero']\">Add A Hero</a>\n            </nav>\n            <div>\n                <div class=\"ui three column centered grid\">\n                    <router-outlet></router-outlet>\n                </div>\n            </div>           \n        </div>\n    </div>\n    <div class=\"outer\">\n        <login-bar></login-bar> \n    </div>\n\n  ",
+                        styles: ["\n    .outer {\n                overflow: hidden;\n       position: relative;\n    }\n\n    .inner {\n        position: relative;\n        height: 100%;\n        width: 100%;\n\n    }\n  "]
                     }),
                     router_1.RouteConfig([
                         { path: '/Home', name: 'Home', component: Home_component_1.HomeComponent },

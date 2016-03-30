@@ -34,7 +34,7 @@ System.register(['angular2/core', 'angular2/common', '../services/UserService.se
                     core_1.Component({
                         selector: 'home-page',
                         directives: [common_1.CORE_DIRECTIVES],
-                        template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t    <div class=\"ui raised segment\" *ngIf=\"isLoggedIn\">\n    \t\t\t<h3>You are logged in as:</h3>\n    \t\t\t<p>{{username}}</p>\n    \t\t</div>\n    \t\t<div class=\"centered row\">\n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t</div>\n    \t<div>\n    \t\t<div>\n    \t\t\t<h1>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></h1>\n    \t\t</div>\n\t\t</div>\n\t"
+                        template: "\n\t\t<div style=\"padding-top: 30px\">\n\t\t    <div class=\"ui raised segment\" *ngIf=\"isLoggedIn\">\n    \t\t\t<h3>You are logged in as:</h3>\n    \t\t\t<p>{{username}}</p>\n    \t\t</div>\n    \t\t<div class=\"centered row\">\n    \t\t\t  \n    \t\t\t<img width=\"737\" height=\"556\" alt=\"ASCII-apple logo\" src=\"http://api.ning.com/files/OTRhyu1*Ip38MTLctq-b*SBmfLipjdsfOFZ6dd2h8tQ_/ASCIIapple_logo.gif?width=737&amp;height=556\">\n    \t\t</div>\n    \t</div>\n    \t<div>\n    \t\t<div>\n    \t\t\t<h1>A Hero REST Server designed by <a href=\"https://github.com/Luidog\"> Lui de la Parra </a></h1>\n    \t\t</div>\n\t\t</div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [UserService_service_1.UserService])
                 ], HomeComponent);
