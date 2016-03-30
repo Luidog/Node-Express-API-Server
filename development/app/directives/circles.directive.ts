@@ -5,31 +5,32 @@ import { Directive, Injectable, ElementRef, Inject, Attribute, OnChanges } from 
 
 @Injectable()
 	@Directive({
-		selector: 'bar-graph',
+		selector: 'circles',
 		inputs: ['data'],
 	})
 
-export class Bargraph implements OnChanges {
+export class Circles implements OnChanges {
 	data: Array<number>;
-	divs: any;
+	svgContainer: any;
 	constructor(
 		@Inject(ElementRef) elementRef: ElementRef,
 		@Attribute('width') width: string,
 		@Attribute('height') height: string) {
 
 		var el: any = elementRef.nativeElement;
-		var graph: any = d3.select(el);
+		var svgContainer = d3.select(el);
+		//Make an SVG Container
+		var svgContainer = d3.select("body").append("svg")
+		.attr("width", 200)
+		.attr("height", 200);
+		
+		//Draw the Circle
+		var circle = svgContainer.append("circle")
+		.attr("cx", 30)
+		.attr("cy", 30)
+		.attr("r", 20);
 
-		this.divs = graph.
-			append('div').
-			attr({
-				'class': 'chart'
-			}).
-			style({
-				'width': width +  'px',
-				'height': height + 'px',
-			}).
-			selectAll('div')
+
 	}
 
 	render(data: any): void {
@@ -42,12 +43,10 @@ export class Bargraph implements OnChanges {
 			.style('width', d => d + '%')
 			.text(d => d + '%');
 
-		this.divs.data(data).remove()
  
 
 	}
 
 	ngOnChanges() {
-		this.render(this.data);
 	}
 }

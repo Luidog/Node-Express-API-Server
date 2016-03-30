@@ -15,54 +15,51 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         return function (target, key) { decorator(target, key, paramIndex); }
     };
     var core_1;
-    var Bargraph;
+    var Circles;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            Bargraph = (function () {
-                function Bargraph(elementRef, width, height) {
+            Circles = (function () {
+                function Circles(elementRef, width, height) {
                     var el = elementRef.nativeElement;
-                    var graph = d3.select(el);
-                    this.divs = graph.
-                        append('div').
-                        attr({
-                        'class': 'chart'
-                    }).
-                        style({
-                        'width': width + 'px',
-                        'height': height + 'px',
-                    }).
-                        selectAll('div');
+                    var svgContainer = d3.select(el);
+                    //Make an SVG Container
+                    var svgContainer = d3.select("body").append("svg")
+                        .attr("width", 200)
+                        .attr("height", 200);
+                    //Draw the Circle
+                    var circle = svgContainer.append("circle")
+                        .attr("cx", 30)
+                        .attr("cy", 30)
+                        .attr("r", 20);
                 }
-                Bargraph.prototype.render = function (data) {
+                Circles.prototype.render = function (data) {
                     if (!data)
                         return;
                     this.divs.data(data).enter().append('div')
                         .transition().ease('elastic')
                         .style('width', function (d) { return d + '%'; })
                         .text(function (d) { return d + '%'; });
-                    this.divs.data(data).remove();
                 };
-                Bargraph.prototype.ngOnChanges = function () {
-                    this.render(this.data);
+                Circles.prototype.ngOnChanges = function () {
                 };
-                Bargraph = __decorate([
+                Circles = __decorate([
                     core_1.Injectable(),
                     core_1.Directive({
-                        selector: 'bar-graph',
+                        selector: 'circles',
                         inputs: ['data'],
                     }),
                     __param(0, core_1.Inject(core_1.ElementRef)),
                     __param(1, core_1.Attribute('width')),
                     __param(2, core_1.Attribute('height')), 
                     __metadata('design:paramtypes', [core_1.ElementRef, String, String])
-                ], Bargraph);
-                return Bargraph;
+                ], Circles);
+                return Circles;
             }());
-            exports_1("Bargraph", Bargraph);
+            exports_1("Circles", Circles);
         }
     }
 });

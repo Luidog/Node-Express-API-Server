@@ -35,7 +35,6 @@ export class UserService{
 	public setCurrentUser(newUser: User): void {
 		let nUser =  new User(newUser);
 		this.currentUser.next(nUser);
-		console.log('this fired')
 	}
 
     logOut(): boolean {

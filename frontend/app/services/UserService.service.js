@@ -58,7 +58,6 @@ System.register(['angular2/http', 'angular2/core', './angular2-jwt', '../common/
                 UserService.prototype.setCurrentUser = function (newUser) {
                     var nUser = new user_datatype_1.User(newUser);
                     this.currentUser.next(nUser);
-                    console.log('this fired');
                 };
                 UserService.prototype.logOut = function () {
                     localStorage.removeItem(this.token);
