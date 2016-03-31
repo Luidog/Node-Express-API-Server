@@ -11,8 +11,9 @@ var validateJwt = expressJwt({
 });
 
 /**
- * Attaches the user object to the request if authenticated
- * Otherwise returns 403
+ * retrieves the authorization token from the request and validates it. It then returns the decoded JSON object to req.user.
+ * @return object  returns composable middleware that results in the user account that made the account.
+ * @error  res.send On error it responds with error code 401 and ends the connection.
  */
 function isAuthenticated() {
   return compose()
@@ -37,6 +38,12 @@ function isAuthenticated() {
 
 /**
  * Checks if the user role meets the minimum requirements of the route
+ */
+
+/**
+ * Checks if the users' role matches the role passed to it
+ * @param  {string}  roleRequired the role required to proceed
+ * @return {function} returns composable middleware consisting of isAuthenticated
  */
 function hasRole(roleRequired) {
   if (!roleRequired) {

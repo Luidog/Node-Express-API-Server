@@ -42,7 +42,6 @@ export class Bargraph implements OnChanges {
 			.style('width', d => d + '%')
 			.text(d => d + '%');
 
-		this.divs.data(data).remove()
  
 
 	}
