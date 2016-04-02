@@ -11,8 +11,13 @@ var validateJwt = expressJwt({
 });
 
 /**
- * retrieves the authorization token from the request and validates it. It then returns the decoded JSON object to req.user.
+ * Retrieves the authorization token from the request and validates it. It then returns the decoded JSON object to req.user.
+ * It uses express-jwt to validate the token.
+ *
+ * https://github.com/auth0/express-jwt
+ * 
  * @return object  returns composable middleware that results in the user account that made the account.
+ * 
  * @error  res.send On error it responds with error code 401 and ends the connection.
  */
 function isAuthenticated() {
@@ -65,7 +70,11 @@ function hasRole(roleRequired) {
 }
 
 /**
- * Returns a jwt token signed by the app secret
+ * sigToken uses JWT to sign a token 
+ * @param  {[type]} id       [description]
+ * @param  {[type]} username [description]
+ * @param  {[type]} role     [description]
+ * @return {[type]}          [description]
  */
 function signToken(id, username, role) {
   return jwt.sign({ _id: id, userName: username, role: role }, config.secrets.session, {

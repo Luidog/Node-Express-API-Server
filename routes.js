@@ -9,7 +9,6 @@ var path = require("path"),
 	cookieParser = require('cookie-parser'),
 	flash    = require('connect-flash'),
 	bodyParser = require('body-parser'),
-	session      = require('express-session');
 
 module.exports = function(serverApp) {
 

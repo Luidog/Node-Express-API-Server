@@ -7,6 +7,16 @@ var auth = require('../auth.service');
 var router = express.Router();
 
 router.post('/', function(req, res, next) {
+
+
+
+/**
+ * Passport.Authenticate will use 
+ * @param  {[type]} err   [description]
+ * @param  {[type]} user  [description]
+ * @param  {[type]} info) 
+ * @return {[type]}       [description]
+ */
   passport.authenticate('local', function(err, user, info) {
     var error = err || info;
     if (error) {

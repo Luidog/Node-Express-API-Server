@@ -106,8 +106,6 @@ if(mongoDBOptions.seedDB){
 	create a logging funtion so that messages are not lost over time.
 */
 
-serverApp.use(bodyParser.urlencoded({ extended: false }))    // parse application/x-www-form-urlencoded
-serverApp.use(bodyParser.json())
 
 function startServer(){
 	server.listen(serverOptions.port, function(){
