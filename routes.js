@@ -8,7 +8,7 @@ var path = require("path"),
 	passport = require('passport'),
 	cookieParser = require('cookie-parser'),
 	flash    = require('connect-flash'),
-	bodyParser = require('body-parser'),
+	bodyParser = require('body-parser');
 
 module.exports = function(serverApp) {
 

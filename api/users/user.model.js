@@ -1,11 +1,19 @@
 'use strict';
 
+/**
+ * First We pass in  Mongoose and define schema. Schema is the foundation of everything in Mongoose.
+ * http://mongoosejs.com/docs/guide.html
+ * @type {[type]}
+ */
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
-// var Favorites = new Schema({ beachId: String })
+/**
+ * We define a schema by creating a new instance of it and defining
+ *  what the shape of the document will be
+ */
 
 var Devices = new Schema({
   deviceName: String,
@@ -206,5 +214,10 @@ UserSchema.methods = {
     });
   }
 };
+
+/**
+ * When we call the .model function we pass in the singular name of the collection 
+ * to use when modeling our schema and the defined schema itself. It is here that our UserSchema becomes a collection
+ */
 
 module.exports = mongoose.model('User', UserSchema);

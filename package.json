@@ -13,7 +13,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^0.8.5",
     "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
     "composable-middleware": "^0.3.0",
@@ -23,7 +22,6 @@
     "express-jwt": "^3.0.0",
     "jsonwebtoken": "^5.0.0",
     "lodash": "^4.5.1",
-    "method-override": "^2.3.5",
     "mongoose": "^4.4.4",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -32,6 +30,7 @@
     "winston": "^2.2.0"
   },
   "devDependencies": {
+    "bcrypt": "^0.8.5",
     "angular2": "^2.0.0-beta.8",
     "beeper": "^1.1.0",
     "gulp": "^3.9.1",
