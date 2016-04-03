@@ -13,10 +13,13 @@ var path = require("path"),
 module.exports = function(serverApp) {
 
 	serverApp.use(bodyParser.json()); // get information from html forms
+	
 	serverApp.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-	serverApp.use("/api/heroes", require("./api/heroes"))
+	serverApp.use("/api/heroes", require("./api/heroes"));
+
 	serverApp.use('/api/users', require('./api/users'));
+
 	serverApp.use('/auth', require('./auth'));
 
 

@@ -36,7 +36,7 @@ function localAuthenticate(User, email, password, done) {
  * @param  {object} config  The configuration properties defined in the config file.
  * @return {function}       A callback function used to define our authenticatation strategy. 
  */
-exports.setup = function(User, config) {
+exports.setup = function(User) {
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password' 

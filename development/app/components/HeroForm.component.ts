@@ -34,7 +34,8 @@ import { Hero } from '../datatypes/hero.datatype';
           <pre>{{ hero | json}}</pre>
       </div>
   </div>
-`
+`,
+    styles:[`.style{background-color:blue}`]
 })
 
 export class HeroForm {
