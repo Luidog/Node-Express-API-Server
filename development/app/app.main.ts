@@ -12,7 +12,7 @@ import { HeroForm } from './components/HeroForm.component';
 import { HeroDetail } from './components/HeroDetail.component';
 import { HeroList } from './components/HeroList.component';
 import { NothingHere } from './components/NothingHere.component';
-import { HomeComponent } from './components/Home.component';
+import { HomeComponent } from './components/home.component';
 import { LoginComponent } from './components/login.component';
 import { LoginBar } from './components/LoginBar.component';
 import { SignUpComponent } from './components/SignUp.component';

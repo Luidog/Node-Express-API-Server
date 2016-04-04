@@ -4,6 +4,7 @@ export class User {
 	username: string;
 	email: string;
 	id: string;
+	role: string;
 
 	constructor(obj: any) {
 
@@ -13,6 +14,7 @@ export class User {
 		this.username = obj && obj.username || null
 		this.email = obj && obj.email || null
 		this.id = obj && obj._id || null
+		this.role = obj && obj.role || null
 
 		console.log("User Created for %s %s || Username: %s. - ID: %s", this.firstName, this.lastName, this.username, this.id)
 	}

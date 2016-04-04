@@ -13,6 +13,7 @@ System.register([], function(exports_1, context_1) {
                     this.username = obj && obj.username || null;
                     this.email = obj && obj.email || null;
                     this.id = obj && obj._id || null;
+                    this.role = obj && obj.role || null;
                     console.log("User Created for %s %s || Username: %s. - ID: %s", this.firstName, this.lastName, this.username, this.id);
                 }
                 return User;

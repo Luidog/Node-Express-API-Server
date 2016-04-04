@@ -57,7 +57,7 @@ var express = require("express"),
  		https://en.wikipedia.org/wiki/Separation_of_concerns
  */
 
-	mongoDBOptions = require("./configuration/mongoDBOptions"),
+	mongoDBOptions = require("./configuration/mongoDbOptions"),
 	serverOptions = require("./configuration/serverOptions");
 
 /*

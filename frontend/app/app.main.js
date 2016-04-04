@@ -1,5 +1,5 @@
 /// <reference path="../../configuration/es6-shim.d.ts" />
-System.register(['./services/UserService.service', 'angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/Home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', './components/UserPage.component', 'angular2/http', 'angular2/router', './services/angular2-jwt'], function(exports_1, context_1) {
+System.register(['./services/UserService.service', 'angular2/platform/browser', 'angular2/core', './components/HeroForm.component', './components/HeroDetail.component', './components/HeroList.component', './components/NothingHere.component', './components/home.component', './components/login.component', './components/LoginBar.component', './components/SignUp.component', './components/UserPage.component', 'angular2/http', 'angular2/router', './services/angular2-jwt'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var UserService_service_1, browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, Home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, UserPage_component_1, http_1, router_1, angular2_jwt_1, core_2;
+    var UserService_service_1, browser_1, core_1, HeroForm_component_1, HeroDetail_component_1, HeroList_component_1, NothingHere_component_1, home_component_1, login_component_1, LoginBar_component_1, SignUp_component_1, UserPage_component_1, http_1, router_1, angular2_jwt_1, core_2;
     var HeroApp;
     return {
         setters:[
@@ -37,8 +37,8 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
             function (NothingHere_component_1_1) {
                 NothingHere_component_1 = NothingHere_component_1_1;
             },
-            function (Home_component_1_1) {
-                Home_component_1 = Home_component_1_1;
+            function (home_component_1_1) {
+                home_component_1 = home_component_1_1;
             },
             function (login_component_1_1) {
                 login_component_1 = login_component_1_1;
@@ -75,7 +75,7 @@ System.register(['./services/UserService.service', 'angular2/platform/browser', 
                         styles: ["\n    .outer {\n                overflow: hidden;\n       position: relative;\n    }\n\n    .inner {\n        position: relative;\n        height: 100%;\n        width: 100%;\n\n    }\n  "]
                     }),
                     router_1.RouteConfig([
-                        { path: '/Home', name: 'Home', component: Home_component_1.HomeComponent },
+                        { path: '/Home', name: 'Home', component: home_component_1.HomeComponent },
                         { path: '/addahero', name: 'AddAHero', component: HeroForm_component_1.HeroForm },
                         { path: '/heroes', name: 'Heroes', component: HeroList_component_1.HeroList },
                         { path: '/hero/:_id', name: 'HeroDetail', component: HeroDetail_component_1.HeroDetail },
